@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Authentication.Cookies;
 using Web.Configuration;
 using Microsoft.AspNetCore.Identity;
 
+
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Logging.AddConsole();
@@ -16,6 +17,16 @@ if (builder.Environment.IsDevelopment())
 {
     Infrastructure.Dependencies.ConfigureServices(builder.Configuration, builder.Services);
 }
+
+//builder.Services.AddDatabaseDeveloperPageExceptionFilter();
+
+builder.Services.Configure<IdentityOptions>(options =>
+{
+    // Lockout settings
+    options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(5);
+    options.Lockout.MaxFailedAccessAttempts = 5;
+    options.Lockout.AllowedForNewUsers = true;
+});
 
 builder.Services.AddCookieSettings();
 
@@ -38,6 +49,9 @@ builder.Services.AddMemoryCache();
 
 builder.Services.AddControllersWithViews();
 builder.Services.AddRazorPages();
+
+builder.Services.AddSassCompiler();
+
 
 var app = builder.Build();
 

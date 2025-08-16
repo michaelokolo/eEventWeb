@@ -1,0 +1,43 @@
+﻿@import url('https://fonts.googleapis.com/css2?family=Geist:wght@100..900&display=swap');
+
+
+// SCSS variables
+$font-family-base: 'Geist', sans-serif;
+$color-black: #000;
+$color-white: #fff;
+$color-gray: #6c757d;
+$color-border-focus: $color-gray;
+$shadow-focus: 0 0 0 0.15rem rgba(108, 117, 125, 0.15);
+
+
+// CSS custom properties
+:root {
+    --font-family-base: #{$font-family-base};
+    --color-black: #{$color-black};
+    --color-white: #{$color-white};
+    --color-gray: #{$color-gray};
+    --color-border-focus: #{$color-border-focus};
+    --shadow-focus: #{$shadow-focus};
+}
+
+body {
+    font-family: var(--font-family-base);
+}
+
+header {
+    padding: 0 1rem;
+}
+
+// Form styles
+.form-container {
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.form-control:focus,
+.form-select:focus {
+    border-color: var(--color-border-focus);
+    box-shadow: var(--shadow-focus);
+    outline: none;
+}

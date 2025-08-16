@@ -1,0 +1,72 @@
+﻿@page
+@model Web.Areas.Identity.Pages.Account.RegisterModel
+@{
+    ViewData["Title"] = "Register";
+}
+
+
+
+    <div class="container my-5 form-container">
+        <form asp-route-returnUrl="@Model.ReturnUrl" method="post">
+            <h2 class="text-center">Create an Account</h2>
+            <div asp-validation-summary="All" class="text-danger"></div>
+            <!-- Email -->
+                <div class="form-group mb-3">
+                    <label asp-for="Input.Email" class="form-label fw-semibold text-dark"></label>
+                    <input asp-for="Input.Email" placeholder="Enter your email" class="form-control rounded-3 py-2 px-3 border border-2 text-dark" />
+                    <span asp-validation-for="Input.Email" class="text-danger"></span>
+                </div>
+
+                <!-- Password -->
+                <div class="form-group mb-3">
+                <label asp-for="Input.Password" class="form-label fw-semibold text-dark">Password</label>
+                    <input asp-for="Input.Password"
+                           class="form-control rounded-3 py-2 px-3 border border-2 text-dark"
+                           placeholder="Enter your password"
+                           autocomplete="off">
+                    <span asp-validation-for="Input.Password" class="text-danger"></span>
+                </div>
+                <!-- Confirm Password -->
+                <div class="mb-3">
+                <label asp-for="Input.ConfirmPassword" class="form-label fw-semibold text-dark">Confirm Password</label>
+                <input asp-for="Input.ConfirmPassword"
+                           class="form-control rounded-3 py-2 px-3 border border-2 text-dark"
+                           placeholder="Re-enter your password"
+                       autocomplete="off">
+                <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
+                </div>
+
+                <!-- Role Select -->
+                @* <div class="mb-4">
+                    <label for="exampleSelect1" class="d-flex form-label fw-semibold text-dark">Role</label>
+                    <select class="d-flex form-select rounded-3 py-2 px-3 border border-2  w-100"
+                            id="exampleSelect1">
+                        <option>Organizer</option>
+                        <option>Freelancer</option>
+                    </select>
+                </div> *@
+
+                <div class="mb-4">
+                    <label asp-for="Input.Role" class="form-label fw-semibold text-dark">Join as</label>
+                    <select asp-for="Input.Role" class="d-flex form-select rounded-3 py-2 px-3 border border-2 w-100">
+                        <option value="">Select a role</option>
+                        <option value="Organizer">Organizer</option>
+                        <option value="Freelancer">Freelancer</option>
+                    </select>
+                    <span asp-validation-for="Input.Role" class="text-danger"></span>
+                </div>
+
+                <!-- Submit Button -->
+                <div class="d-grid">
+                    <button type="submit"
+                    class="btn btn-dark rounded-3 fw-semibold shadow-sm">
+                        Register
+                    </button>
+                </div>
+        </form>
+    </div>
+
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

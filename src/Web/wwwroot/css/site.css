@@ -1,3 +1,5 @@
+
+
 html {
   font-size: 14px;
 }
@@ -18,5 +20,6 @@ html {
 }
 
 body {
-  margin-bottom: 60px;
+    margin-bottom: 60px;
+    font-family: 'Geist', sans-serif;
 }
