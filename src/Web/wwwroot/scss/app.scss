@@ -6,6 +6,7 @@ $font-family-base: 'Geist', sans-serif;
 $color-black: #000;
 $color-white: #fff;
 $color-gray: #6c757d;
+$color-light-gray: #d1d5db;
 $color-border-focus: $color-gray;
 $shadow-focus: 0 0 0 0.15rem rgba(108, 117, 125, 0.15);
 
@@ -45,7 +46,7 @@ header {
 // Alert styles
 .alert {
     background-color: $color-white;
-    border: 2px solid $color-black;
+    border: 1px solid $color-light-gray;
     border-radius: 0.5rem;
     padding: 1rem 1.5rem;
     color: black;
