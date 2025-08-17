@@ -41,3 +41,18 @@ header {
     box-shadow: var(--shadow-focus);
     outline: none;
 }
+
+// Alert styles
+.alert {
+    background-color: $color-white;
+    border: 2px solid $color-black;
+    border-radius: 0.5rem;
+    padding: 1rem 1.5rem;
+    color: black;
+
+    i {
+        font-size: 1.8rem;
+        color: $color-black;
+        margin-right: 0.5rem;
+    }
+}

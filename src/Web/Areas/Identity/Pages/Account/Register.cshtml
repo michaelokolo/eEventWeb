@@ -37,21 +37,14 @@
                 </div>
 
                 <!-- Role Select -->
-                @* <div class="mb-4">
-                    <label for="exampleSelect1" class="d-flex form-label fw-semibold text-dark">Role</label>
-                    <select class="d-flex form-select rounded-3 py-2 px-3 border border-2  w-100"
-                            id="exampleSelect1">
-                        <option>Organizer</option>
-                        <option>Freelancer</option>
-                    </select>
-                </div> *@
-
                 <div class="mb-4">
                     <label asp-for="Input.Role" class="form-label fw-semibold text-dark">Join as</label>
                     <select asp-for="Input.Role" class="d-flex form-select rounded-3 py-2 px-3 border border-2 w-100">
                         <option value="">Select a role</option>
-                        <option value="Organizer">Organizer</option>
-                        <option value="Freelancer">Freelancer</option>
+                        @foreach(var role in Model.AvailableRoles)
+                        {
+                            <option value="@role">@role</option>
+                        }
                     </select>
                     <span asp-validation-for="Input.Role" class="text-danger"></span>
                 </div>

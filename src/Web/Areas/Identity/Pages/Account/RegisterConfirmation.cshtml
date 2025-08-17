@@ -1,0 +1,20 @@
+﻿@page
+@model Web.Areas.Identity.Pages.Account.RegisterConfirmationModel
+@{
+    ViewData["Title"] = "Registration Confirmation";
+}
+<div class="container my-5">
+    <div class="row justify-content-center">
+        <div class="col-12 col-lg-6">
+            <div class="d-flex align-items-center alert" role="alert">
+                <i class="bi bi-check-circle-fill flex-shrink-0 me-3"></i>
+                <div class="text-start" >
+                    <strong>Registration successful!</strong> Please check your email (@Model.Email) to confirm your account.
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+

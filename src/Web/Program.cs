@@ -3,6 +3,7 @@ using Infrastructure.Identity;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Web.Configuration;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Authorization;
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -44,6 +45,16 @@ builder.Services.AddIdentity<ApplicationUser, IdentityRole>()
     .AddEntityFrameworkStores<AppIdentityDbContext>()
     .AddDefaultTokenProviders();
 
+builder.Services.AddAuthorization(options =>
+{
+    options.FallbackPolicy = new AuthorizationPolicyBuilder()
+        .RequireAuthenticatedUser()
+        .Build();
+});
+
+// Add custom services
+builder.Services.AddCoreServices(builder.Configuration);
+
 // Add memory cache services
 builder.Services.AddMemoryCache();
 
@@ -54,6 +65,26 @@ builder.Services.AddSassCompiler();
 
 
 var app = builder.Build();
+
+app.Logger.LogInformation("App created...");
+
+app.Logger.LogInformation("Seeding Database...");
+
+using (var scope = app.Services.CreateScope())
+{
+    var scopedProvider = scope.ServiceProvider;
+    try
+    {
+        var userManager = scopedProvider.GetRequiredService<UserManager<ApplicationUser>>();
+        var roleManager = scopedProvider.GetRequiredService<RoleManager<IdentityRole>>();
+        var identityContext = scopedProvider.GetRequiredService<AppIdentityDbContext>();
+        await AppIdentityDbContextSeed.SeedAsync(identityContext, userManager, roleManager);
+    }
+    catch (Exception ex)
+    {
+        app.Logger.LogError(ex, "An error occurred while seeding the database.");
+    }
+}
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())

@@ -1,0 +1,23 @@
+﻿@page
+@model Web.Areas.Identity.Pages.Account.ConfirmEmailModel
+@{
+    ViewData["Title"] = "Confirm Email";
+}
+
+<div class="container my-5">
+    <div class="row justify-content-center">
+        <div class="col-12 col-lg-6">
+            <div role="alert" class="d-flex flex-column alert">
+                <div class="d-flex align-items-center mb-3">
+                    <i class="bi bi-check-circle-fill"></i>
+                    <span>@Model.StatusMessage</span>
+                </div>
+                @if (Model.StatusMessage?.Contains("Thank you") == true)
+                {
+                    <a class="btn btn-dark text-md-center" style="max-width:120px;" href="/Account/Login">Go to Login</a>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
