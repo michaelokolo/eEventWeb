@@ -1,4 +1,22 @@
-﻿<div class="d-flex justify-content-start">
-    <a type="button" class="btn btn-outline-dark me-3" asp-area="Identity" asp-page="/Account/Login">Login</a>
-    <a type="button" class="btn btn-dark" asp-area="Identity" asp-page="/Account/Register">Sign up</a>
-</div>
+﻿@using Microsoft.AspNetCore.Identity
+@using Infrastructure.Identity
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+
+@if (SignInManager.IsSignedIn(User))
+{
+    <div class="d-flex">
+        @* <span class="navbar-text text-dark me-3">Hello, @UserManager.GetUserName(User)!</span> *@
+        <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
+            <button type="submit" class="btn btn-dark">Logout</button>
+        </form>
+    </div>
+
+}
+else
+{
+    <div class="d-flex justify-content-start">
+        <a type="button" class="btn btn-outline-dark me-3" asp-area="Identity" asp-page="/Account/Login">Login</a>
+        <a type="button" class="btn btn-dark" asp-area="Identity" asp-page="/Account/Register">Sign up</a>
+    </div>
+}
