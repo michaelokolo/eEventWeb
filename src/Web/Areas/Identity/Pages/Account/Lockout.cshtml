@@ -1,0 +1,23 @@
+﻿@page
+@model Web.Areas.Identity.Pages.Account.LockoutModel
+@{
+    ViewData["Title"] = "Locked out";
+}
+
+
+<div class="container my-5">
+    <div class="row justify-content-center">
+        <div class="col-12 col-lg-6">
+            <div class="d-flex align-items-center alert" role="alert">
+                <i class="bi bi-exclamation-triangle-fill flex-shrink-0 me-3" style="font-size: 2rem;"></i>
+                <div class="text-start">
+                    <strong>Account Locked Out</strong>
+                    <p class="mb-0">
+                        This account has been locked due to multiple unsuccessful login attempts.
+                        Please try again later.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
