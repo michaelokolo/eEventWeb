@@ -13,7 +13,7 @@
         <!-- Email -->
         <div class="form-group mb-3">
             <label asp-for="Input.Email" class="form-label fw-semibold text-dark"></label>
-            <input asp-for="Input.Email" placeholder="Enter your email" class="form-control rounded-3 py-2 px-3 border border-2 text-dark" />
+            <input asp-for="Input.Email" placeholder="Enter your email" class="" />
             <span asp-validation-for="Input.Email" class="text-danger"></span>
         </div>
 
@@ -21,7 +21,7 @@
         <div class="form-group mb-3">
             <label asp-for="Input.Password" class="form-label fw-semibold text-dark">Password</label>
             <input asp-for="Input.Password"
-                   class="form-control rounded-3 py-2 px-3 border border-2 text-dark"
+                   class=""
                    placeholder="Enter your password"
                    autocomplete="off">
             <span asp-validation-for="Input.Password" class="text-danger"></span>
@@ -29,9 +29,9 @@
 
         <!-- Remember Me -->
         <div class="form-group mb-2">
-            <div class="checkbox">
-                <label asp-for="Input.RememberMe" class="fw-normal text-dark">
-                    <input asp-for="Input.RememberMe" />
+            <div class="form-check d-flex align-items-center">
+                <input asp-for="Input.RememberMe" class="form-check-input me-2" />
+                <label asp-for="Input.RememberMe" class="form-check-label mb-0">
                     @Html.DisplayNameFor(m => m.Input.RememberMe)
                 </label>
             </div>
@@ -41,7 +41,7 @@
         <!-- Login Button -->
         <div class="d-grid">
             <button type="submit"
-                    class="btn btn-dark rounded-3 fw-semibold shadow-sm">
+                    class="btn btn-cta-dark rounded-3 fw-semibold shadow-sm">
                 Log in
             </button>
         </div>

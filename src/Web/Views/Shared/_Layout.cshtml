@@ -13,9 +13,9 @@
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-lg bg-white" aria-label="Primary navigation">
+        <nav class="navbar navbar-expand-lg bg-white py-3 px-3 px-md-5" aria-label="Primary navigation">
             <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">eEventWeb</a>
+                <a class="navbar-brand" asp-page="/Index">eEvent</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -41,13 +41,13 @@
             </div>
         </nav>
     </header>
-    <div class="container mb-5 mt-5">
-        <main role="main" class="pb-3 ">
+    <div class="flex-grow-1">
+        <main role="main" class="pb-3">
             @RenderBody()
         </main>
     </div>
 
-    <footer class="border-top footer text-muted">
+    <footer class="border-top text-muted">
         <div class="container">
             &copy; 2025 - eEventWeb - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
         </div>

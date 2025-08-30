@@ -1,0 +1,48 @@
+﻿@import url('https://fonts.googleapis.com/css2?family=Geist:wght@100..900&display=swap');
+
+
+// SCSS variables
+$font-family-base: 'Geist', sans-serif;
+$color-black: #000;
+$color-white: #fff;
+$color-gray: #6c757d;
+$color-light-gray: #d1d5db;
+$color-border-focus: $color-gray;
+$shadow-focus: 0 0 0 0.15rem rgba(108, 117, 125, 0.15);
+
+
+// CSS custom properties
+:root {
+    --font-family-base: #{$font-family-base};
+    --color-black: #{$color-black};
+    --color-white: #{$color-white};
+    --color-gray: #{$color-gray};
+    --color-border-focus: #{$color-border-focus};
+    --shadow-focus: #{$shadow-focus};
+}
+
+body,
+html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    font-family: var(--font-family-base);
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+main {
+    flex: 1;
+    padding: 20px;
+}
+
+footer {
+    //background: $color-light-gray;
+    padding: 1rem 0;
+}
+
+

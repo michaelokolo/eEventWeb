@@ -1,117 +1,14 @@
-﻿@import url('https://fonts.googleapis.com/css2?family=Geist:wght@100..900&display=swap');
+﻿@use "form";
+@use "alert";
+@use "base";
+@use "hero";
+@use "button";
 
 
-// SCSS variables
-$font-family-base: 'Geist', sans-serif;
-$color-black: #000;
-$color-white: #fff;
-$color-gray: #6c757d;
-$color-light-gray: #d1d5db;
-$color-border-focus: $color-gray;
-$shadow-focus: 0 0 0 0.15rem rgba(108, 117, 125, 0.15);
 
 
-// CSS custom properties
-:root {
-    --font-family-base: #{$font-family-base};
-    --color-black: #{$color-black};
-    --color-white: #{$color-white};
-    --color-gray: #{$color-gray};
-    --color-border-focus: #{$color-border-focus};
-    --shadow-focus: #{$shadow-focus};
-}
-
-body {
-    font-family: var(--font-family-base);
-}
-
-header {
-    padding: 0 1rem;
-}
-
-// Form styles
-.form-container {
-    max-width: 500px;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-.form-control:focus,
-.form-select:focus {
-    border-color: var(--color-border-focus);
-    box-shadow: var(--shadow-focus);
-    outline: none;
-}
-
-// Alert styles
-.alert {
-    background-color: $color-white;
-    border: 1px solid $color-light-gray;
-    border-radius: 0.5rem;
-    padding: 1rem 1.5rem;
-    color: black;
-
-    i {
-        font-size: 1.8rem;
-        color: $color-black;
-        margin-right: 0.5rem;
-    }
-}
 
 
-.login-links {
-    margin-top: 1rem; // mt-3 equivalent
-    text-align: center;
 
-    a {
-        color: #000;
-        text-decoration: none;
-        font-weight: 400;
-        position: relative;
-        padding: 0 0.25rem;
-        transition: color 0.3s ease;
-        display: inline-block; // Critical for text-width underline
 
-        &::after {
-            content: '';
-            position: absolute;
-            left: 0;
-            bottom: -2px;
-            width: 100%;
-            height: 1.4px;
-            background: #000;
-            transform: scaleX(0);
-            transform-origin: right;
-            transition: transform 0.3s ease;
-        }
 
-        &:hover::after {
-            transform: scaleX(1);
-            transform-origin: left;
-        }
-    }
-
-    span {
-        color: #555;
-        margin: 0 0.5rem;
-        user-select: none;
-    }
-
-    @media (max-width: 600px) {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 0.75rem;
-
-        a {
-            padding: 0;
-            font-size: 1rem;
-            display: inline-block; // Ensures underline is text width on mobile too
-            text-align: center;
-        }
-
-        span {
-            display: none;
-        }
-    }
-}

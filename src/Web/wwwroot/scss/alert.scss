@@ -1,0 +1,18 @@
+﻿@import "base";
+
+// Alert styles
+.alert {
+    background-color: $color-white;
+    border: 1px solid $color-light-gray;
+    border-radius: 0.5rem;
+    padding: 1rem 1.5rem;
+    color: black;
+
+    i {
+        font-size: 1.8rem;
+        color: $color-black;
+        margin-right: 0.5rem;
+    }
+}
+
+

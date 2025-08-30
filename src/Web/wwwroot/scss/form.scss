@@ -1,0 +1,244 @@
+﻿@import "base";
+
+// Form styles
+.form-container {
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.form-control:focus,
+.form-select:focus {
+    border-color: var(--color-border-focus);
+    box-shadow: var(--shadow-focus);
+    outline: none;
+}
+
+////////////////////////////////
+// ===============================
+// Modern Native Form System (Optimized Padding)
+// ===============================
+body {
+    // ===============================
+    // Labels
+    // ===============================
+    label.form-label {
+        display: inline-block;
+        margin-bottom: 0.5rem;
+        font-weight: 600;
+        font-size: 1rem;
+        color: $color-black;
+        cursor: pointer;
+    }
+    // ===============================
+    // Inputs, Textareas, Selects
+    // ===============================
+    input[type="text"],
+    input[type="email"],
+    input[type="password"],
+    input[type="number"],
+    input[type="search"],
+    textarea,
+    select {
+        display: block;
+        width: 100%;
+        padding: 12px 18px; // optimized padding
+        font-size: 1rem;
+        font-family: $font-family-base;
+        line-height: 1.5;
+        color: $color-black;
+        background-color: $color-white;
+        border: 1px solid $color-light-gray;
+        border-radius: 8px;
+        transition: border-color 0.2s ease, box-shadow 0.2s ease;
+
+        &::placeholder {
+            color: $color-gray;
+            opacity: 0.8;
+        }
+
+        &:focus {
+            border-color: $color-border-focus;
+            outline: none;
+            box-shadow: $shadow-focus;
+        }
+
+        &:disabled,
+        &[readonly] {
+            background-color: #f8f9fa;
+            opacity: 0.7;
+            cursor: not-allowed;
+        }
+    }
+
+    textarea {
+        min-height: 120px;
+        resize: vertical;
+    }
+    // ===============================
+    // Select Dropdowns
+    // ===============================
+    select {
+        appearance: none;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        background-color: $color-white;
+        color: $color-black; // selected option text black
+        font-size: 1rem;
+        border: 1px solid $color-light-gray;
+        border-radius: 8px;
+        cursor: pointer;
+        padding: 12px 36px 12px 18px; // extra right padding for chevron
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%236c757d' viewBox='0 0 16 16'%3E%3Cpath fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/%3E%3C/svg%3E");
+        background-repeat: no-repeat;
+        background-position: right 1rem center;
+        background-size: 1rem;
+
+        option {
+            color: $color-black;
+            background-color: $color-white;
+        }
+    }
+    // ===============================
+    // Checkboxes & Radios
+    // ===============================
+    .form-check {
+        display: flex;
+        align-items: center;
+        margin-bottom: 0.75rem;
+
+        input[type="checkbox"],
+        input[type="radio"] {
+            width: 1rem;
+            height: 1rem;
+            cursor: pointer;
+            border-radius: 4px;
+            border: 1px solid $color-light-gray;
+            appearance: none;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            position: relative;
+            transition: all 0.2s ease;
+            margin-bottom: 0.25rem;
+
+            &:checked {
+                background-color: $color-black;
+                border-color: $color-black;
+                margin-bottom: 0.25rem;
+            }
+
+            &:focus {
+                outline: none;
+                box-shadow: $shadow-focus;
+            }
+
+            &:disabled {
+                cursor: not-allowed;
+                opacity: 0.6;
+            }
+        }
+        // Radios circular style
+        input[type="radio"] {
+            border-radius: 50%;
+
+            &:checked::after {
+                width: 0.6rem;
+                height: 0.6rem;
+                border-radius: 50%;
+            }
+        }
+
+        .form-check-label {
+            font-size: 1rem;
+            color: $color-black;
+            cursor: pointer;
+            margin-bottom: 0;
+            user-select: none;
+        }
+    }
+    // ===============================
+    // Feedback & Helper Text
+    // ===============================
+    .form-text {
+        font-size: 0.875rem;
+        color: $color-gray;
+        margin-top: 0.25rem;
+    }
+
+    .invalid-feedback {
+        font-size: 0.875rem;
+        color: #dc3545;
+        margin-top: 0.25rem;
+    }
+
+    .valid-feedback {
+        font-size: 0.875rem;
+        color: #28a745;
+        margin-top: 0.25rem;
+    }
+}
+
+
+///////////////////////////////
+
+
+
+
+
+
+.login-links {
+    margin-top: 1rem; // mt-3 equivalent
+    text-align: center;
+
+    a {
+        color: #000;
+        text-decoration: none;
+        font-weight: 400;
+        position: relative;
+        padding: 0 0.25rem;
+        transition: color 0.3s ease;
+        display: inline-block; // Critical for text-width underline
+
+        &::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -2px;
+            width: 100%;
+            height: 1.4px;
+            background: #000;
+            transform: scaleX(0);
+            transform-origin: right;
+            transition: transform 0.3s ease;
+        }
+
+        &:hover::after {
+            transform: scaleX(1);
+            transform-origin: left;
+        }
+    }
+
+    span {
+        color: #555;
+        margin: 0 0.5rem;
+        user-select: none;
+    }
+
+    @media (max-width: 600px) {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 0.75rem;
+
+        a {
+            padding: 0;
+            font-size: 1rem;
+            display: inline-block; // Ensures underline is text width on mobile too
+            text-align: center;
+        }
+
+        span {
+            display: none;
+        }
+    }
+}
