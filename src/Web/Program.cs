@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Authentication.Cookies;
 using Web.Configuration;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Authorization;
+using Infrastructure.Data;
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -75,6 +76,9 @@ using (var scope = app.Services.CreateScope())
     var scopedProvider = scope.ServiceProvider;
     try
     {
+        var eventAppContext = scopedProvider.GetRequiredService<EventAppContext>();
+        await EventAppContextSeed.SeedAsync(eventAppContext, app.Logger);
+
         var userManager = scopedProvider.GetRequiredService<UserManager<ApplicationUser>>();
         var roleManager = scopedProvider.GetRequiredService<RoleManager<IdentityRole>>();
         var identityContext = scopedProvider.GetRequiredService<AppIdentityDbContext>();
@@ -115,3 +119,9 @@ app.Run();
 
 //dotnet ef migrations add InitialIdentityModel --context AppIdentityDbContext -p ../Infrastructure/Infrastructure.csproj -s Web.csproj -o Identity/Migrations
 //dotnet ef database update --context AppIdentityDbContext -p ../Infrastructure/Infrastructure.csproj -s Web.csproj
+
+
+
+
+//dotnet ef migrations add InitialEventModel --context EventAppContext -p ../Infrastructure/Infrastructure.csproj -s Web.csproj -o Data/Migrations
+//dotnet ef database update --context EventAppContext -p ../Infrastructure/Infrastructure.csproj -s Web.csproj
