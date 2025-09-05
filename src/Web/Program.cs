@@ -55,6 +55,7 @@ builder.Services.AddAuthorization(options =>
 
 // Add custom services
 builder.Services.AddCoreServices(builder.Configuration);
+builder.Services.AddWebServices(builder.Configuration);
 
 // Add memory cache services
 builder.Services.AddMemoryCache();

@@ -22,3 +22,19 @@
         </div>
     </div>
 </section>
+<div class="container">
+    @if(Model.EventModel.Events.Any()){
+        <div>
+            @foreach(var events in Model.EventModel.Events)
+            {
+                <div col-md-4>
+                    <ul>
+                        <li>@events.Title</li>
+                        <li>@events.Description</li>
+                        <li>@events.Date.ToString("MM/dd/yyyy")</li>
+                    </ul>
+                </div>
+            }
+        </div>
+    }
+</div>
