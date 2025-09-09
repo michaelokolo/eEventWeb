@@ -9,15 +9,18 @@ public class EventConfiguration : IEntityTypeConfiguration<Event>
     public void Configure(EntityTypeBuilder<Event> builder)
     {
         builder.Property(e => e.Title)
-            .IsRequired()
+            .IsRequired(true)
             .HasMaxLength(200);
 
         builder.Property(e => e.Description)
-            .IsRequired()
+            .IsRequired(true)
             .HasMaxLength(2000);
 
         builder.Property(e => e.Date)
-            .IsRequired();
+            .IsRequired(true);
+
+        builder.Property(e => e.PictureUri)
+            .IsRequired(true);
 
         builder.Property(e => e.OrganizerId)
             .IsRequired();

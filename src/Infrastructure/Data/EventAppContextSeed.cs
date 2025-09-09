@@ -43,12 +43,14 @@ public class EventAppContextSeed
             {
                 var events = new List<Event>
                 {
-                    new Event("Event 1", "Description for Event 1", DateTime.Now.AddDays(10), organizer1!.Id),
-                    new Event("Event 2", "Description for Event 2", DateTime.Now.AddDays(20), organizer2!.Id),
-                    new Event("Event 3", "Description for Event 3", DateTime.Now.AddDays(30), organizer1!.Id),
-                    new Event("Event 4", "Description for Event 4", DateTime.Now.AddDays(40), organizer3!.Id),
-                    new Event("Event 5", "Description for Event 5", DateTime.Now.AddDays(50), organizer2!.Id),
-                    new Event("Event 6", "Description for Event 6", DateTime.Now.AddDays(60), organizer3!.Id)
+                    new Event("Tech Innovators Summit", "A conference showcasing the latest breakthroughs in AI, robotics, and software development.", DateTime.Now.AddDays(10), "/images/events/event1.jpg", organizer1!.Id),
+                    new Event("Culinary Fest 2025", "A food festival celebrating local and international cuisines with live cooking demonstrations.", DateTime.Now.AddDays(20), "/images/events/event2.jpg", organizer2!.Id),
+                    new Event("Green Future Expo", "An exhibition focusing on sustainable living, renewable energy, and eco-friendly innovations.", DateTime.Now.AddDays(30), "/images/events/event3.jpg", organizer1!.Id),
+                    new Event("Global Startup Pitch", "Entrepreneurs from around the world pitch their innovative business ideas to investors.", DateTime.Now.AddDays(40), "/images/events/event4.jpg", organizer3!.Id),
+                    new Event("Music & Arts Carnival", "A cultural festival featuring live bands, art exhibitions, and street performances.", DateTime.Now.AddDays(50), "/images/events/event5.jpg", organizer2!.Id),
+                    new Event("Health & Wellness Fair", "Workshops and seminars on fitness, nutrition, and mental health awareness.", DateTime.Now.AddDays(60), "/images/events/event6.jpg", organizer3!.Id),
+                    new Event("Space Exploration Talk", "A keynote session by leading scientists discussing the future of space travel.", DateTime.Now.AddDays(70), "/images/events/event7.jpg", organizer1!.Id)
+
                 };
 
                 await eventAppContext.Events.AddRangeAsync(events);

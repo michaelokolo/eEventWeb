@@ -40,6 +40,19 @@ main {
     padding: 20px;
 }
 
+.heading {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--color-black);
+    margin: 0 0 0.5rem;
+}
+
+.subheading {
+    font-size: 1rem;
+    color: var(--color-gray);
+    margin: 0;
+}
+
 footer {
     //background: $color-light-gray;
     padding: 1rem 0;

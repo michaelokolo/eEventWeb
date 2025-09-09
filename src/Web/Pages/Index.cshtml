@@ -23,18 +23,18 @@
     </div>
 </section>
 <div class="container">
-    @if(Model.EventModel.Events.Any()){
-        <div>
-            @foreach(var events in Model.EventModel.Events)
+    <!-- EVENTS SECTION -->
+    <section class="text-center mb-4">
+        <h2 class="heading">Upcoming Events</h2>
+        <p class="subheading">Explore events from organizers and apply to join as a freelancer.</p>
+    </section>
+    <section class="event-grid">
+        @if (Model.EventModel.Events.Any())
+        {
+            @foreach (var events in Model.EventModel.Events)
             {
-                <div col-md-4>
-                    <ul>
-                        <li>@events.Title</li>
-                        <li>@events.Description</li>
-                        <li>@events.Date.ToString("MM/dd/yyyy")</li>
-                    </ul>
-                </div>
+                <partial name="_EventCard" for="@events"/>
             }
-        </div>
-    }
+       }
+    </section>
 </div>

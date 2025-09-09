@@ -8,6 +8,7 @@ public class Event : BaseEntity, IAggregateRoot
     public string Title { get; private set; }
     public string Description { get; private set; }
     public DateTime Date { get; private set; }
+    public string PictureUri { get; private set; }
     public int OrganizerId { get; private set; }
 
     private readonly List<Application> _applications = new();
@@ -19,17 +20,20 @@ public class Event : BaseEntity, IAggregateRoot
 
     public Event(string title, 
         string description, 
-        DateTime date, 
+        DateTime date,
+        string pictureUri,
         int organizerId)
     {
         Guard.Against.NullOrEmpty(title, nameof(title));
         Guard.Against.NullOrEmpty(description, nameof(description));
         Guard.Against.OutOfRange(date, nameof(date), DateTime.UtcNow, DateTime.MaxValue);
+        Guard.Against.NullOrEmpty(pictureUri, nameof(pictureUri));
         Guard.Against.NegativeOrZero(organizerId, nameof(organizerId));
 
         Title = title;
         Description = description;
         Date = date;
+        PictureUri = pictureUri;
         OrganizerId = organizerId;
     }
 

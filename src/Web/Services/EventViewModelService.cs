@@ -30,7 +30,8 @@ public class EventViewModelService : IEventViewModelService
                 Id = i.Id,
                 Title = i.Title,
                 Description = i.Description,
-                Date = i.Date
+                Date = i.Date,
+                PictureUri = i.PictureUri
             }).ToList()
         };
 
