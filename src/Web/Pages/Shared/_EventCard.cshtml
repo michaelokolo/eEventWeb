@@ -1,13 +1,15 @@
 ﻿@model EventItemViewModel
 
-
-<article class="event-card">
-    <img src="@Model.PictureUri" alt="@Model.Title" class="event-image" />
-    <div class="event-body">
-        <h3 class="event-title">@Model.Title</h3>
-        <p class="event-organizer">Organizer: Walking Friends</p>
-        <div class="event-meta">
-            <span class="event-date">@Model.Date.ToString("ddd, MMM d · h:mm tt 'BST'")</span>
+<a asp-page="/Event/EventDetails" asp-route-id="@Model.Id">
+    <article class="event-card">
+        <img src="@Model.PictureUri" alt="@Model.Title" class="event-image" />
+        <div class="event-body">
+            <h3 class="event-title">@Model.Title</h3>
+            <p class="event-organizer">Organizer: Walking Friends</p>
+            <div class="event-meta">
+                <span class="event-date">@Model.Date.ToString("ddd, MMM d · h:mm tt 'BST'")</span>
+            </div>
         </div>
-    </div>
-</article>
+    </article>
+</a>
+

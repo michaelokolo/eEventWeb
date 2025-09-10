@@ -37,4 +37,23 @@ public class EventViewModelService : IEventViewModelService
 
         return eventIndexViewModel;
     }
+
+    public async Task<EventItemViewModel?> GetEventByIdAsync(int id) 
+    {
+        _logger.LogInformation("Getting event by id: {Id}", id);
+        var eventEntity = await _eventRepository.GetByIdAsync(id);
+        if (eventEntity == null) return null;
+
+        var eventItemViewModel = new EventItemViewModel()
+        {
+            Id = eventEntity.Id,
+            Title = eventEntity.Title,
+            Description = eventEntity.Description,
+            Date = eventEntity.Date,
+            PictureUri = eventEntity.PictureUri
+        };
+
+        return eventItemViewModel;
+    }
+
 }

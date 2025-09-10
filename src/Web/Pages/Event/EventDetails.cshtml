@@ -1,0 +1,20 @@
+﻿@page "{id:int}"
+@model Web.Pages.Event.EventDetailsModel
+
+@{
+    ViewData["Title"] = "Event Details";
+}
+
+<section class="">
+    @if (Model.Event != null)
+    {
+       <img src="@Model.Event.PictureUri" alt="@Model.Event.Title"/>
+        <h2>@Model.Event.Title</h2>
+        <p>@Model.Event.Description</p>
+        <p>Date: @Model.Event.Date.ToString("MMMM dd, yyyy")</p>
+    }
+    else
+    {
+        <p>Event not found.</p>
+    }
+</section>
