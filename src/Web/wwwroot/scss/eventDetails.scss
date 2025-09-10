@@ -1,0 +1,120 @@
+﻿@import "base";
+
+.event-details {
+    padding: 2rem;
+
+    @media (max-width: 768px) {
+        padding: 1rem;
+    }
+
+    &-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 2rem;
+
+        @media (min-width: 768px) {
+            grid-template-columns: 1fr 1.2fr;
+            align-items: start;
+        }
+    }
+
+    &-image img {
+        width: 100%;
+        border-radius: 1rem;
+        object-fit: cover;
+        box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+    }
+
+    &-info {
+        display: flex;
+        flex-direction: column;
+        gap: 1.25rem;
+    }
+
+    &-title {
+        font-size: 1.7rem;
+        font-weight: 700;
+        color: var(--color-black);
+        margin: 0;
+    }
+
+    &-role,
+    &-organizer {
+        font-size: 1rem;
+        margin: 0;
+    }
+
+    &-meta {
+        display: flex;
+        flex-direction: column;
+        gap: 0.75rem;
+        margin-top: 0.5rem;
+    }
+
+    &-meta-item {
+        display: flex;
+        gap: 0.5rem;
+        font-size: 0.95rem;
+    }
+
+    &-icon {
+        width: 1.2rem;
+        height: 1.2rem;
+        flex-shrink: 0;
+    }
+
+    &-description h2 {
+        font-size: 1.25rem;
+        font-weight: 600;
+        margin-bottom: 0.5rem;
+    }
+
+    &-description {
+
+        h2 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+        }
+
+        p {
+            font-size: 1rem;
+            line-height: 1.5;
+        }
+    }
+
+    &-requirements {
+        list-style: disc;
+        padding-left: 1.5rem;
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+
+        li {
+            font-size: 1rem;
+            line-height: 1.5;
+        }
+    }
+
+    &-cta {
+        margin-top: 1rem;
+    }
+
+    &-button {
+        display: inline-block;
+        padding: 0.75rem 1.5rem;
+        font-size: 1rem;
+        font-weight: 600;
+        color: var(--color-white);
+        background-color: $color-black;
+        border-radius: 0.5rem;
+        text-decoration: none;
+        transition: background-color 0.2s ease;
+
+        &:hover,
+        &:focus {
+            background-color: darken($color-black, 10%);
+            color: var(--color-white);
+        }
+    }
+}

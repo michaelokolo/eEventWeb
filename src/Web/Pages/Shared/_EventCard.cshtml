@@ -1,14 +1,37 @@
 ﻿@model EventItemViewModel
 
-<a asp-page="/Event/EventDetails" asp-route-id="@Model.Id">
-    <article class="event-card">
-        <img src="@Model.PictureUri" alt="@Model.Title" class="event-image" />
-        <div class="event-body">
-            <h3 class="event-title">@Model.Title</h3>
-            <p class="event-organizer">Organizer: Walking Friends</p>
-            <div class="event-meta">
-                <span class="event-date">@Model.Date.ToString("ddd, MMM d · h:mm tt 'BST'")</span>
+<a asp-page="/Event/EventDetails" asp-route-id="@Model.Id" class="event-card">
+    <article class="event-card-inner">
+        
+        <img src="@Model.PictureUri" alt="@Model.Title" class="event-card-image" />
+        <div class="event-card-body">
+            <h3 class="event-card-role">Photographer</h3>
+            <p class="event-card-title">Event: @Model.Title</p>
+            <p class="event-card-organizer">Organizer: Walking Friends</p>
+            <div class="event-card-meta">
+                <span class="event-card-date">
+                    <!-- Calendar Icon -->
+                    <svg xmlns="http://www.w3.org/2000/svg" class="event-card-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                              d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0
+              00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                    </svg>
+                    @Model.Date.ToString("ddd, MMM d · h:mm tt 'BST'")</span>
+                <span class="event-card-location">
+                    <!-- Map Pin Icon -->
+                    <svg xmlns="http://www.w3.org/2000/svg" class="event-card-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                              d="M12 11c1.657 0 3-1.343 3-3S13.657 5 12
+              5s-3 1.343-3 3 1.343 3 3 3z" />
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                              d="M19.5 10.5c0 7.5-7.5 11.25-7.5
+              11.25S4.5 18 4.5 10.5a7.5 7.5 0
+              1115 0z" />
+                    </svg>
+                    28 Newland Avenue, HU32 EX4, United Kingdom
+                </span>
             </div>
+            <span class="event-card-button" aria-hidden="true">See More</span>
         </div>
     </article>
 </a>

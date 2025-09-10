@@ -5,13 +5,78 @@
     ViewData["Title"] = "Event Details";
 }
 
-<section class="">
+<section class="event-details">
     @if (Model.Event != null)
     {
-       <img src="@Model.Event.PictureUri" alt="@Model.Event.Title"/>
+       @* <img src="@Model.Event.PictureUri" alt="@Model.Event.Title"/>
         <h2>@Model.Event.Title</h2>
         <p>@Model.Event.Description</p>
-        <p>Date: @Model.Event.Date.ToString("MMMM dd, yyyy")</p>
+        <p>Date: @Model.Event.Date.ToString("MMMM dd, yyyy")</p> *@
+
+        <div class="event-details-grid">
+            <!-- Left: Event Image -->
+            <div class="event-details-image">
+                <img src="@Model.Event.PictureUri" alt="@Model.Event.Title"/>
+            </div>
+
+            <!-- Right: Event Details -->
+            <div class="event-details-info">
+                <h1 class="event-details-title">@Model.Event.Title</h1>
+                <p class="event-details-role">Role: Photographer</p>
+                <p class="event-details-organizer">Organizer: Walking Friends</p>
+
+                <!-- Meta Data -->
+                <div class="event-details-meta">
+                    <div class="event-details-meta-item">
+                        <!-- Calendar Icon -->
+                        <svg xmlns="http://www.w3.org/2000/svg" class="event-details-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                  d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0
+                                      00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                        </svg>
+                        <span>@Model.Event.Date.ToString("dddd, MMMM dd, yyyy · h:mm tt 'BST'")</span>
+                    </div>
+
+                    <div class="event-details-meta-item">
+                        <!-- Map Pin Icon -->
+                        <svg xmlns="http://www.w3.org/2000/svg" class="event-details-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                  d="M12 11c1.657 0 3-1.343 3-3S13.657 5 12
+                                      5s-3 1.343-3 3 1.343 3 3 3z" />
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                  d="M19.5 10.5c0 7.5-7.5 11.25-7.5
+                                      11.25S4.5 18 4.5 10.5a7.5 7.5 0
+                                      1115 0z" />
+                        </svg>
+                        <span>28 Newland Avenue, HU32 EX4, United Kingdom</span>
+                    </div>
+                </div>
+
+                <!-- Description -->
+                <div class="event-details-description">
+                    <h2>Role Requirements</h2>
+                    <ul class="event-details-requirements">
+                        <li>Take high-quality photos throughout the event</li>
+                        <li>Deliver edited images within 48 hours</li>
+                        <li>Experience with event photography preferred</li>
+                        <li>Own camera and equipment required</li>
+                    </ul>
+                </div>
+
+                <div class="event-details-description">
+                    <h2>Event Description</h2>
+                    <p>@Model.Event.Description</p>
+                </div>
+
+                <!-- CTA -->
+                <div class="event-details-cta">
+                    <a asp-area="Identity" asp-page="/Account/Login" class="event-details-button">
+                        Sign in / Sign up to Apply
+                    </a>
+                </div>
+
+            </div>
+        </div>
     }
     else
     {
