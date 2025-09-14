@@ -1,5 +1,7 @@
 ﻿using ApplicationCore.Entities.EventAggregate;
+using ApplicationCore.Entities.OrganizerAggregate;
 using ApplicationCore.Interfaces;
+using ApplicationCore.Specifications;
 using Web.Interfaces;
 using Web.ViewModels;
 
@@ -9,39 +11,72 @@ public class EventViewModelService : IEventViewModelService
 {
     private readonly ILogger<EventViewModelService> _logger;
     private readonly IRepository<Event> _eventRepository;
+    private readonly IRepository<Organizer> _organizerRepository;
 
     public EventViewModelService(
         ILoggerFactory loggerFactory,
-        IRepository<Event> eventRepository)
+        IRepository<Event> eventRepository,
+        IRepository<Organizer> organizerRepository
+        )
     {
         _logger = loggerFactory.CreateLogger<EventViewModelService>();
         _eventRepository = eventRepository;
+        _organizerRepository = organizerRepository;
     }
 
     public async Task<EventIndexViewModel> GetEvents()
     {
         _logger.LogInformation("Getting events");
-        var events = await _eventRepository.ListAsync();
 
-        var eventIndexViewModel = new EventIndexViewModel()
+        var allEventsSpecification = new AllEventsSpecification();
+        var events = await _eventRepository.ListAsync(allEventsSpecification);
+
+        // Fetch all organizer IDs
+        var organizerIds = events.Select(e => e.OrganizerId).Distinct().ToList();
+
+        var organizerByIdsSpecification = new OrganizerByIdsSpecification(organizerIds);
+
+        var organizers = await _organizerRepository.ListAsync(organizerByIdsSpecification);
+
+        // Create a dictionary for quick lookup
+        var organizerDict = organizers.ToDictionary(o => o.Id, o => o.Name ?? "Unknown Organizer");
+
+
+        var eventViewModels = events.Select(i => new EventItemViewModel()
         {
-            Events = events.Select(i => new EventItemViewModel()
-            {
-                Id = i.Id,
-                Title = i.Title,
-                Description = i.Description,
-                Date = i.Date,
-                PictureUri = i.PictureUri
-            }).ToList()
+            Id = i.Id,
+            Title = i.Title,
+            Description = i.Description,
+            Date = i.Date,
+            PictureUri = i.PictureUri,
+            Role = i.RoleInfo?.Role,
+            Location = i.RoleInfo?.Location,
+            Budget = i.RoleInfo?.Budget,
+            OrganizerName = organizerDict.TryGetValue(i.OrganizerId, out var name) ? name : "Unknown Organizer"
+        }).ToList();
+
+        var eventIndexViewModel = new EventIndexViewModel
+        {
+            Events = eventViewModels
         };
 
         return eventIndexViewModel;
     }
 
+    public async Task<OrganizerViewModel> GetOrganizerAsync(int organizerId)
+    {
+        _logger.LogInformation("Getting organizer name for id: {OrganizerId}", organizerId);
+        var organizer = await _organizerRepository.GetByIdAsync(organizerId);
+        if (organizer == null) return new OrganizerViewModel { Id = organizerId, Name = "Unknown Organizer" };
+        return new OrganizerViewModel { Id = organizer.Id, Name = organizer.Name };
+    }
+
     public async Task<EventItemViewModel?> GetEventByIdAsync(int id) 
     {
         _logger.LogInformation("Getting event by id: {Id}", id);
-        var eventEntity = await _eventRepository.GetByIdAsync(id);
+
+        var eventByIdWithRequirementsSpecification = new EventByIdWithRequirementsSpecification(id);
+        var eventEntity = await _eventRepository.FirstOrDefaultAsync(eventByIdWithRequirementsSpecification);
         if (eventEntity == null) return null;
 
         var eventItemViewModel = new EventItemViewModel()
@@ -50,7 +85,16 @@ public class EventViewModelService : IEventViewModelService
             Title = eventEntity.Title,
             Description = eventEntity.Description,
             Date = eventEntity.Date,
-            PictureUri = eventEntity.PictureUri
+            PictureUri = eventEntity.PictureUri,
+            Role = eventEntity.RoleInfo?.Role,
+            Location = eventEntity.RoleInfo?.Location,
+            Budget = eventEntity.RoleInfo?.Budget,
+            OrganizerName = (await GetOrganizerAsync(eventEntity.OrganizerId)).Name,
+            Requirements = eventEntity.RoleInfo?.Requirements?.Select(r => new RequirementViewModel
+            {
+                Id = r.Id,
+                Description = r.Description
+            }).ToList() ?? new List<RequirementViewModel>()
         };
 
         return eventItemViewModel;

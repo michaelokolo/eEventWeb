@@ -8,11 +8,6 @@
 <section class="event-details">
     @if (Model.Event != null)
     {
-       @* <img src="@Model.Event.PictureUri" alt="@Model.Event.Title"/>
-        <h2>@Model.Event.Title</h2>
-        <p>@Model.Event.Description</p>
-        <p>Date: @Model.Event.Date.ToString("MMMM dd, yyyy")</p> *@
-
         <div class="event-details-grid">
             <!-- Left: Event Image -->
             <div class="event-details-image">
@@ -22,8 +17,8 @@
             <!-- Right: Event Details -->
             <div class="event-details-info">
                 <h1 class="event-details-title">@Model.Event.Title</h1>
-                <p class="event-details-role">Role: Photographer</p>
-                <p class="event-details-organizer">Organizer: Walking Friends</p>
+                <p class="event-details-role">Role: @Model.Event.Role</p>
+                <p class="event-details-organizer">Organizer: @Model.Event.OrganizerName</p>
 
                 <!-- Meta Data -->
                 <div class="event-details-meta">
@@ -48,7 +43,7 @@
                                       11.25S4.5 18 4.5 10.5a7.5 7.5 0
                                       1115 0z" />
                         </svg>
-                        <span>28 Newland Avenue, HU32 EX4, United Kingdom</span>
+                        <span>@Model.Event.Location</span>
                     </div>
                 </div>
 
@@ -56,10 +51,10 @@
                 <div class="event-details-description">
                     <h2>Role Requirements</h2>
                     <ul class="event-details-requirements">
-                        <li>Take high-quality photos throughout the event</li>
-                        <li>Deliver edited images within 48 hours</li>
-                        <li>Experience with event photography preferred</li>
-                        <li>Own camera and equipment required</li>
+                        @foreach(var requirement in Model.Event.Requirements)
+                        {
+                            <li>@requirement.Description</li>
+                        }
                     </ul>
                 </div>
 

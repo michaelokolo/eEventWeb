@@ -10,6 +10,7 @@ public class Event : BaseEntity, IAggregateRoot
     public DateTime Date { get; private set; }
     public string PictureUri { get; private set; }
     public int OrganizerId { get; private set; }
+    public EventRoleInfo? RoleInfo { get; private set; }
 
     private readonly List<Application> _applications = new();
     public IReadOnlyCollection<Application> Applications => _applications.AsReadOnly();
@@ -22,19 +23,22 @@ public class Event : BaseEntity, IAggregateRoot
         string description, 
         DateTime date,
         string pictureUri,
-        int organizerId)
+        int organizerId,
+        EventRoleInfo roleInfo)
     {
         Guard.Against.NullOrEmpty(title, nameof(title));
         Guard.Against.NullOrEmpty(description, nameof(description));
         Guard.Against.OutOfRange(date, nameof(date), DateTime.UtcNow, DateTime.MaxValue);
         Guard.Against.NullOrEmpty(pictureUri, nameof(pictureUri));
         Guard.Against.NegativeOrZero(organizerId, nameof(organizerId));
+        Guard.Against.Null(roleInfo, nameof(roleInfo));
 
         Title = title;
         Description = description;
         Date = date;
         PictureUri = pictureUri;
         OrganizerId = organizerId;
+        RoleInfo = roleInfo;
     }
 
     public Application Apply(int freelancerId)

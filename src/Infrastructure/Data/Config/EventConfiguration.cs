@@ -25,6 +25,19 @@ public class EventConfiguration : IEntityTypeConfiguration<Event>
         builder.Property(e => e.OrganizerId)
             .IsRequired();
 
+        builder.OwnsOne(e => e.RoleInfo, ri =>
+        {
+            ri.Property(r => r.Role).HasMaxLength(100);
+            ri.Property(r => r.Location).HasMaxLength(200);
+            ri.Property(r => r.Budget).HasColumnType("decimal(18,2)");
+
+            ri.OwnsMany(r => r.Requirements, r =>
+            {
+                r.Property(x => x.Description).HasMaxLength(500);
+                r.WithOwner().HasForeignKey("EventId");
+            });
+        });
+
         // Configure the private field for applications
         var navigation = builder.Metadata.FindNavigation(nameof(Event.Applications));
         navigation?.SetPropertyAccessMode(PropertyAccessMode.Field);

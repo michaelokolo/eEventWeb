@@ -5,9 +5,9 @@
         
         <img src="@Model.PictureUri" alt="@Model.Title" class="event-card-image" />
         <div class="event-card-body">
-            <h3 class="event-card-role">Photographer</h3>
+            <h3 class="event-card-role">@Model.Role</h3>
             <p class="event-card-title">Event: @Model.Title</p>
-            <p class="event-card-organizer">Organizer: Walking Friends</p>
+            <p class="event-card-organizer">Organizer: @Model.OrganizerName</p>
             <div class="event-card-meta">
                 <span class="event-card-date">
                     <!-- Calendar Icon -->
@@ -28,7 +28,7 @@
               11.25S4.5 18 4.5 10.5a7.5 7.5 0
               1115 0z" />
                     </svg>
-                    28 Newland Avenue, HU32 EX4, United Kingdom
+                    @Model.Location
                 </span>
             </div>
             <span class="event-card-button" aria-hidden="true">See More</span>
