@@ -5,11 +5,42 @@
 
 @if (SignInManager.IsSignedIn(User))
 {
-    <div class="d-flex">
-        @* <span class="navbar-text text-dark me-3">Hello, @UserManager.GetUserName(User)!</span> *@
+    @* <div class="d-flex">
+         <span class="navbar-text text-dark me-3">Hello, @UserManager.GetUserName(User)!</span>
         <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
             <button type="submit" class="btn btn-cta-dark btn-header">Logout</button>
         </form>
+    </div> *@
+    <!-- Profile Dropdown (Desktop) -->
+    <div class="dropdown d-none d-lg-block">
+        <a href="#" class="d-flex align-items-center text-decoration-none dropdown-toggle" id="profileDropdown"
+           data-bs-toggle="dropdown" aria-expanded="false">
+            <i class="bi bi-person-circle fs-3 me-2"></i>
+            <span class="d-none d-md-inline fw-semibold">John Doe</span>
+        </a>
+        <ul class="dropdown-menu dropdown-menu-end shadow" aria-labelledby="profileDropdown">
+            <li><h6 class="dropdown-header">johndoe@email.com</h6></li>
+            <li><a class="dropdown-item" href="#"><i class="bi bi-person me-2"></i>Your Profile</a></li>
+            <li><a class="dropdown-item" href="#"><i class="bi bi-gear me-2"></i>Settings</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item text-danger" href="#"><i class="bi bi-box-arrow-right me-2"></i>Sign out</a></li>
+        </ul>
+    </div>
+
+    <!-- Profile Section (Mobile, inside collapse) -->
+    <div class="d-lg-none border-top pt-3 mt-3 nav-mobile">
+        <div class="d-flex mb-3 nav-mobile-avatar">
+            <i class="bi bi-person-circle fs-3 me-2"></i>
+            <div>
+                <div class="fw-semibold">John Doe</div>
+                <small class="text-muted">johndoe@email.com</small>
+            </div>
+        </div>
+        <ul class="list-unstyled nav-mobile-list d-flex flex-column gap-2">
+            <li><a class="dropdown-item" href="#"><i class="bi bi-person me-2"></i>Your Profile</a></li>
+            <li><a class="dropdown-item" href="#"><i class="bi bi-gear me-2"></i>Settings</a></li>
+            <li><a class="dropdown-item" href="#"><i class="bi bi-box-arrow-right me-2"></i>Sign out</a></li>
+        </ul>
     </div>
 
 }

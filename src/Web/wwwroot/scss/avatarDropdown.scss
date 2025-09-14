@@ -1,0 +1,38 @@
+﻿/* Avatar dropdown */
+.dropdown-toggle::after {
+    display: none; /* remove default caret */
+}
+
+.dropdown a {
+    text-decoration: none;
+    color: black !important;
+}
+
+.dropdown-menu {
+    border-radius: 0.5rem;
+    padding: 0.5rem 0;
+}
+
+.dropdown-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.dropdown-header {
+    font-size: 0.85rem;
+    color: #6b7280;
+}
+
+
+.nav-mobile {
+    color: black !important;
+
+    a {
+        color: black !important;
+    }
+
+    &-list{
+        gap: 1rem;
+    }
+}
