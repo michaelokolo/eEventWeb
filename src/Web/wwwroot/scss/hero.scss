@@ -6,6 +6,8 @@
     max-height: 600px;
     display: flex;
     align-items: center;
+    margin-bottom: 40px;
+    background: white;
 
     @media (max-width: 900px) {
         height: auto;
