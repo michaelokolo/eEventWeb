@@ -83,7 +83,7 @@ using (var scope = app.Services.CreateScope())
         var userManager = scopedProvider.GetRequiredService<UserManager<ApplicationUser>>();
         var roleManager = scopedProvider.GetRequiredService<RoleManager<IdentityRole>>();
         var identityContext = scopedProvider.GetRequiredService<AppIdentityDbContext>();
-        await AppIdentityDbContextSeed.SeedAsync(identityContext, userManager, roleManager);
+        await AppIdentityDbContextSeed.SeedAsync(identityContext, userManager, roleManager, builder.Configuration);
     }
     catch (Exception ex)
     {
@@ -126,3 +126,14 @@ app.Run();
 
 //dotnet ef migrations add InitialEventModel --context EventAppContext -p ../Infrastructure/Infrastructure.csproj -s Web.csproj -o Data/Migrations
 //dotnet ef database update --context EventAppContext -p ../Infrastructure/Infrastructure.csproj -s Web.csproj
+
+
+//Ideas for this demo app
+// It could be used as a starting point for similar apps and add more features.
+// Used as a reference app for implementing similar functionality.
+// We could build on this app to add more features by collaborating with the community.
+// If you have great app Ideas we can collaborate to build them out.
+// If you are interested in contributing to this project, please reach out to me via LinkedIn or Twitter.
+// Secrets to set in your environment
+// SmtpSettings: password for the email account used to send emails
+// DefaultPassword for the seeded users

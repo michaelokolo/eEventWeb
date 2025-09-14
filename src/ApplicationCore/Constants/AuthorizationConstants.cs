@@ -1,6 +1,7 @@
-﻿namespace ApplicationCore.Constants;
+﻿using Microsoft.Extensions.Configuration;
+namespace ApplicationCore.Constants;
 
 public class AuthorizationConstants
 {
-    public const string DEFAULT_PASSWORD = "Pass@word1";
+    public static string GetDefaultPassword(IConfiguration configuration) => configuration["Authorization:DefaultPassword"]!;
 }
