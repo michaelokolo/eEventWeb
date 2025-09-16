@@ -17,15 +17,18 @@ public class RegisterModel : PageModel
     private readonly UserManager<ApplicationUser> _userManager;
     private readonly ILogger<RegisterModel> _logger;
     private readonly IEmailSender _emailSender;
+    private readonly IUserProfileService _userProfileService;
 
     public RegisterModel(
         UserManager<ApplicationUser> userManager,
         ILogger<RegisterModel> logger,
-        IEmailSender emailSender)
+        IEmailSender emailSender,
+        IUserProfileService userProfileService)
     {
         _userManager = userManager;
         _logger = logger;
         _emailSender = emailSender;
+        _userProfileService = userProfileService;
     }
 
     [BindProperty]
@@ -105,6 +108,15 @@ public class RegisterModel : PageModel
 
             await _userManager.DeleteAsync(user);
             return Page();
+        }
+
+        if (Input?.Role == Roles.FREELANCERS)
+        {
+            await _userProfileService.CreateFreelancerAsync(user.Id, user.UserName ?? user.Email ?? "");
+        }
+        else if (Input?.Role == Roles.ORGANIZERS)
+        {
+            await _userProfileService.CreateOrganizerAsync(user.Id, user.UserName ?? user.Email ?? "");
         }
 
         _logger.LogInformation("User created a new account with password.");

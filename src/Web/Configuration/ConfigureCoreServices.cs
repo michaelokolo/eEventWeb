@@ -1,4 +1,5 @@
 ﻿using ApplicationCore.Interfaces;
+using ApplicationCore.Services;
 using Infrastructure.Data;
 using Infrastructure.Services;
 using static Infrastructure.Services.EmailSender;
@@ -11,6 +12,8 @@ public static class ConfigureCoreServices
     {
         services.AddScoped(typeof(IReadRepository<>), typeof(EfRepository<>));
         services.AddScoped(typeof(IRepository<>), typeof(EfRepository<>));
+
+        services.AddScoped<IUserProfileService, UserProfileService>();
 
         services.Configure<SmtpSettings>(configuration.GetSection("SmtpSettings"));
         services.AddTransient<IEmailSender, EmailSender>();

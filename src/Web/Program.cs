@@ -5,6 +5,7 @@ using Web.Configuration;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Authorization;
 using Infrastructure.Data;
+using ApplicationCore.Interfaces;
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -83,7 +84,8 @@ using (var scope = app.Services.CreateScope())
         var userManager = scopedProvider.GetRequiredService<UserManager<ApplicationUser>>();
         var roleManager = scopedProvider.GetRequiredService<RoleManager<IdentityRole>>();
         var identityContext = scopedProvider.GetRequiredService<AppIdentityDbContext>();
-        await AppIdentityDbContextSeed.SeedAsync(identityContext, userManager, roleManager, builder.Configuration);
+        var userProfileService = scopedProvider.GetRequiredService<IUserProfileService>();
+        await AppIdentityDbContextSeed.SeedAsync(identityContext, userManager, roleManager, builder.Configuration, userProfileService);
     }
     catch (Exception ex)
     {
