@@ -43,3 +43,22 @@
         padding: 6px 16px !important;
     }
 }
+
+.btn-link {
+    background: none;
+    border: none;
+    color: $color-black !important;
+    padding: 0;
+    font: inherit;
+    cursor: pointer;
+    text-decoration: none !important;
+
+    &:hover,
+    &:focus, &:active {
+        color: darken($color-black, 10%) !important;
+        background-color: transparent !important;
+        text-decoration: none !important;
+        outline: none !important;
+        box-shadow: none !important;
+    }
+}
