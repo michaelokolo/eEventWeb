@@ -10,13 +10,13 @@ namespace Web.Services;
 public class EventViewModelService : IEventViewModelService
 {
     private readonly ILogger<EventViewModelService> _logger;
-    private readonly IRepository<Event> _eventRepository;
-    private readonly IRepository<Organizer> _organizerRepository;
+    private readonly IReadRepository<Event> _eventRepository;
+    private readonly IReadRepository<Organizer> _organizerRepository;
 
     public EventViewModelService(
         ILoggerFactory loggerFactory,
-        IRepository<Event> eventRepository,
-        IRepository<Organizer> organizerRepository
+        IReadRepository<Event> eventRepository,
+        IReadRepository<Organizer> organizerRepository
         )
     {
         _logger = loggerFactory.CreateLogger<EventViewModelService>();
