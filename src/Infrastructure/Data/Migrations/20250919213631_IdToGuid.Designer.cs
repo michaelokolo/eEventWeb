@@ -4,6 +4,7 @@ using Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Infrastructure.Data.Migrations
 {
     [DbContext(typeof(EventAppContext))]
-    partial class EventAppContextModelSnapshot : ModelSnapshot
+    [Migration("20250919213631_IdToGuid")]
+    partial class IdToGuid
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -38,7 +41,10 @@ namespace Infrastructure.Data.Migrations
 
                     b.Property<string>("FreelancerId")
                         .IsRequired()
-                        .HasColumnType("nvarchar(128)");
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("FreelancerId1")
+                        .HasColumnType("int");
 
                     b.Property<int>("Status")
                         .HasColumnType("int");
@@ -47,7 +53,7 @@ namespace Infrastructure.Data.Migrations
 
                     b.HasIndex("EventId");
 
-                    b.HasIndex("FreelancerId");
+                    b.HasIndex("FreelancerId1");
 
                     b.ToTable("Applications");
                 });
@@ -70,7 +76,10 @@ namespace Infrastructure.Data.Migrations
 
                     b.Property<string>("OrganizerId")
                         .IsRequired()
-                        .HasColumnType("nvarchar(128)");
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("OrganizerId1")
+                        .HasColumnType("int");
 
                     b.Property<string>("PictureUri")
                         .IsRequired()
@@ -83,7 +92,7 @@ namespace Infrastructure.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("OrganizerId");
+                    b.HasIndex("OrganizerId1");
 
                     b.ToTable("Events");
                 });
@@ -144,20 +153,14 @@ namespace Infrastructure.Data.Migrations
 
                     b.HasOne("ApplicationCore.Entities.FreelancerAggregate.Freelancer", null)
                         .WithMany("Applications")
-                        .HasForeignKey("FreelancerId")
-                        .HasPrincipalKey("IdentityGuid")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("FreelancerId1");
                 });
 
             modelBuilder.Entity("ApplicationCore.Entities.EventAggregate.Event", b =>
                 {
-                    b.HasOne("ApplicationCore.Entities.OrganizerAggregate.Organizer", "Organizer")
+                    b.HasOne("ApplicationCore.Entities.OrganizerAggregate.Organizer", null)
                         .WithMany("Events")
-                        .HasForeignKey("OrganizerId")
-                        .HasPrincipalKey("IdentityGuid")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("OrganizerId1");
 
                     b.OwnsOne("ApplicationCore.Entities.EventAggregate.EventRoleInfo", "RoleInfo", b1 =>
                         {
@@ -210,8 +213,6 @@ namespace Infrastructure.Data.Migrations
 
                             b1.Navigation("Requirements");
                         });
-
-                    b.Navigation("Organizer");
 
                     b.Navigation("RoleInfo");
                 });

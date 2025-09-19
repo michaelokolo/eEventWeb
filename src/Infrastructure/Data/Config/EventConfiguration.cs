@@ -25,6 +25,12 @@ public class EventConfiguration : IEntityTypeConfiguration<Event>
         builder.Property(e => e.OrganizerId)
             .IsRequired();
 
+        builder.HasOne(e => e.Organizer)
+            .WithMany(o => o.Events)
+            .HasForeignKey(e => e.OrganizerId)
+            .HasPrincipalKey(o => o.IdentityGuid)
+            .IsRequired();
+
         builder.OwnsOne(e => e.RoleInfo, ri =>
         {
             ri.Property(r => r.Role).HasMaxLength(100);

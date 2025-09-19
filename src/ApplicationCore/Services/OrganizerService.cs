@@ -18,13 +18,13 @@ public class OrganizerService : IOrganizerService
 
     }
 
-    public async Task<IReadOnlyList<Event>> GetEventsByOrganizerAsync(int organizerId)
+    public async Task<IReadOnlyList<Event>> GetEventsByOrganizerAsync(string organizerId)
     {
         var spec = new EventsByOrganizerSpecification(organizerId);
         return await _eventRepository.ListAsync(spec);
     }
 
-    public async Task<int> CreateEventAsync(int organizerId, string title, string description, DateTime date, string pictureUri, EventRoleInfo roleInfo)
+    public async Task<int> CreateEventAsync(string organizerId, string title, string description, DateTime date, string pictureUri, EventRoleInfo roleInfo)
     {
         var newEvent = new Event(title, description, date, pictureUri, organizerId, roleInfo);
         await _eventRepository.AddAsync(newEvent);

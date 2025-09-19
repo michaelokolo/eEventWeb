@@ -7,7 +7,7 @@ public class EventFilterPaginatedSpecification : Specification<Event>
 {
     public EventFilterPaginatedSpecification(
         int skip, int take, 
-        int? organizerId = null, 
+        string? organizerId = null, 
         DateTime? fromDate = null,
         DateTime? toDate = null,
         string? keyword = null)
@@ -17,7 +17,7 @@ public class EventFilterPaginatedSpecification : Specification<Event>
 
         Query
             .Where(e =>
-            (!organizerId.HasValue || e.OrganizerId == organizerId) &&
+            (!string.IsNullOrEmpty(organizerId) || e.OrganizerId == organizerId) &&
             (!fromDate.HasValue || e.Date >= fromDate) &&
             (!toDate.HasValue || e.Date <= toDate) &&
             (string.IsNullOrEmpty(keyword) ||

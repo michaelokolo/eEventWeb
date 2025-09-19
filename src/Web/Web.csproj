@@ -33,6 +33,7 @@
 
   <ItemGroup>
     <Folder Include="Controllers\" />
+    <Folder Include="Pages\Freelancer\" />
     <Folder Include="Views\Account\" />
   </ItemGroup>
 

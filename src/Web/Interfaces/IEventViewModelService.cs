@@ -7,5 +7,5 @@ public interface IEventViewModelService
     Task<EventIndexViewModel> GetEvents();
     Task<EventItemViewModel?> GetEventByIdAsync(int id);
 
-    Task<OrganizerViewModel> GetOrganizerAsync(int organizerId);
+    Task<OrganizerViewModel> GetOrganizerAsync(string organizerId);
 }

@@ -1,4 +1,5 @@
 ﻿using ApplicationCore.Entities.EventAggregate;
+using ApplicationCore.Entities.FreelancerAggregate;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
@@ -22,5 +23,10 @@ public class ApplicationConfiguration : IEntityTypeConfiguration<Application>
         builder.Property(a => a.FreelancerId)
             .IsRequired();
 
+        builder.HasOne<Freelancer>()
+            .WithMany(f => f.Applications)
+            .HasForeignKey(a => a.FreelancerId)
+            .HasPrincipalKey(f => f.IdentityGuid)
+            .OnDelete(DeleteBehavior.Cascade);
     }
 }

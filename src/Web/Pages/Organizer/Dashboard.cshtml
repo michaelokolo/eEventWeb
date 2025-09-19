@@ -1,0 +1,35 @@
+﻿@page
+@model Web.Pages.Organizer.DashboardModel
+@{
+	ViewData["Title"] = "Organizer Dashboard";
+}
+
+<h2>My Events</h2>
+<a asp-asp-page="CreateEvent" class="btn btn-primary">Create New Event</a>
+<table class="table">
+	<thead>
+		<tr>
+			<th>Title</th>
+			<th>Date</th>
+			<th>Role</th>
+			<th>Location</th>
+			<th>Budget</th>
+			<th>Actions</th>
+		</tr>
+	</thead>
+	<tbody>
+		@foreach(var e in Model.Events)
+		{
+			<tr>
+				<td>@e.Title</td>
+				<td>@e.Date.ToString("dddd, MMMM dd, yyyy · h:mm tt 'BST'")</td>
+				<td>@e.Role</td>
+				<td>@e.Location</td>
+				<td>@e.Budget?.ToString("C")</td>
+				<td>
+					<a asp-page="Applications" asp-route-eventId="@e.Id" class="btn btn-info">View Applications</a>
+				</td>
+			</tr>
+		}
+	</tbody>
+</table>

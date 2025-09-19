@@ -39,7 +39,7 @@ public class EventViewModelService : IEventViewModelService
         var organizers = await _organizerRepository.ListAsync(organizerByIdsSpecification);
 
         // Create a dictionary for quick lookup
-        var organizerDict = organizers.ToDictionary(o => o.Id, o => o.Name ?? "Unknown Organizer");
+        var organizerDict = organizers.ToDictionary(o => o.IdentityGuid, o => o.Name ?? "Unknown Organizer");
 
 
         var eventViewModels = events.Select(i => new EventItemViewModel()
@@ -63,12 +63,17 @@ public class EventViewModelService : IEventViewModelService
         return eventIndexViewModel;
     }
 
-    public async Task<OrganizerViewModel> GetOrganizerAsync(int organizerId)
+    public async Task<OrganizerViewModel> GetOrganizerAsync(string organizerId)
     {
         _logger.LogInformation("Getting organizer name for id: {OrganizerId}", organizerId);
-        var organizer = await _organizerRepository.GetByIdAsync(organizerId);
-        if (organizer == null) return new OrganizerViewModel { Id = organizerId, Name = "Unknown Organizer" };
-        return new OrganizerViewModel { Id = organizer.Id, Name = organizer.Name };
+        var spec = new OrganizerByIdSpecification(organizerId);
+        var organizer = await _organizerRepository.FirstOrDefaultAsync(spec);
+        if (organizer == null) 
+        {
+            _logger.LogWarning("Organizer not found for id: {OrganizerId}", organizerId);
+            return new OrganizerViewModel { Id = "", Name = "Unknown Organizer" };
+        } 
+        return new OrganizerViewModel { Id = organizer.IdentityGuid, Name = organizer.Name };
     }
 
     public async Task<EventItemViewModel?> GetEventByIdAsync(int id) 

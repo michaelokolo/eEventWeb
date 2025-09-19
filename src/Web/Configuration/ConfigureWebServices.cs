@@ -8,6 +8,7 @@ public static class ConfigureWebServices
     public static IServiceCollection AddWebServices(this IServiceCollection services, IConfiguration configuration)
     {
         services.AddScoped<IEventViewModelService,EventViewModelService>();
+        services.AddScoped<IOrganizerDashboardViewModelService, OrganizerDashboardViewModelService>();
 
         return services;
     }

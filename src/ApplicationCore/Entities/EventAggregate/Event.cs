@@ -1,4 +1,5 @@
-﻿using ApplicationCore.Interfaces;
+﻿using ApplicationCore.Entities.OrganizerAggregate;
+using ApplicationCore.Interfaces;
 using Ardalis.GuardClauses;
 
 namespace ApplicationCore.Entities.EventAggregate;
@@ -9,7 +10,8 @@ public class Event : BaseEntity, IAggregateRoot
     public string Description { get; private set; }
     public DateTime Date { get; private set; }
     public string PictureUri { get; private set; }
-    public int OrganizerId { get; private set; }
+    public string OrganizerId { get; private set; }
+    public Organizer? Organizer { get; private set; }
     public EventRoleInfo? RoleInfo { get; private set; }
 
     private readonly List<Application> _applications = new();
@@ -23,14 +25,14 @@ public class Event : BaseEntity, IAggregateRoot
         string description, 
         DateTime date,
         string pictureUri,
-        int organizerId,
+        string organizerId,
         EventRoleInfo roleInfo)
     {
         Guard.Against.NullOrEmpty(title, nameof(title));
         Guard.Against.NullOrEmpty(description, nameof(description));
         Guard.Against.OutOfRange(date, nameof(date), DateTime.UtcNow, DateTime.MaxValue);
         Guard.Against.NullOrEmpty(pictureUri, nameof(pictureUri));
-        Guard.Against.NegativeOrZero(organizerId, nameof(organizerId));
+        Guard.Against.NullOrEmpty(organizerId, nameof(organizerId));
         Guard.Against.Null(roleInfo, nameof(roleInfo));
 
         Title = title;
@@ -41,9 +43,9 @@ public class Event : BaseEntity, IAggregateRoot
         RoleInfo = roleInfo;
     }
 
-    public Application Apply(int freelancerId)
+    public Application Apply(string freelancerId)
     {
-        Guard.Against.NegativeOrZero(freelancerId, nameof(freelancerId));
+        Guard.Against.NullOrEmpty(freelancerId, nameof(freelancerId));
 
         if (_applications.Exists(a => a.FreelancerId == freelancerId))
         {

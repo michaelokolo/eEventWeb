@@ -5,7 +5,7 @@ namespace ApplicationCore.Specifications;
 
 public class EventsByOrganizerSpecification : Specification<Event>
 {
-    public EventsByOrganizerSpecification(int organizerId)
+    public EventsByOrganizerSpecification(string organizerId)
     {
         Query.Where(e => e.OrganizerId == organizerId);
     }

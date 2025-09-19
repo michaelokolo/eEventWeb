@@ -11,5 +11,5 @@ public class EventItemViewModel
     public string? Location { get; set; }
     public decimal? Budget { get; set; }
     public string? OrganizerName { get; set; }
-    public List<RequirementViewModel> Requirements { get; set; } = new List<RequirementViewModel>();
+    public List<RequirementViewModel>? Requirements { get; set; } = new List<RequirementViewModel>();
 }

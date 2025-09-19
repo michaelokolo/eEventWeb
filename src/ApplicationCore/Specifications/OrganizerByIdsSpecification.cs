@@ -5,8 +5,8 @@ namespace ApplicationCore.Specifications;
 
 public class OrganizerByIdsSpecification : Specification<Organizer>
 {
-    public OrganizerByIdsSpecification(IEnumerable<int> organizerIds)
+    public OrganizerByIdsSpecification(IEnumerable<string> organizerIds)
     {
-        Query.Where(o => organizerIds.Contains(o.Id));
+        Query.Where(o => organizerIds.Contains(o.IdentityGuid));
     }
 }
