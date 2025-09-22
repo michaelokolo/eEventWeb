@@ -1,8 +1,6 @@
 ﻿using ApplicationCore.Entities.EventAggregate;
-using ApplicationCore.Entities.OrganizerAggregate;
 using ApplicationCore.Interfaces;
 using ApplicationCore.Specifications;
-using System.Collections.Generic;
 
 namespace ApplicationCore.Services;
 
@@ -61,17 +59,3 @@ public class OrganizerService : IOrganizerService
         _logger.LogInFormation("Application with ID {ApplicationId} for Event {EventId} reviewed with status {Status}", applicationId, eventId, status);
     }
 }
-
-
-
-// Next Steps:
-//Dashboard Page
-//•	Displays a list of events for the organizer.
-//•	Button to create a new event.
-//•	Button/link to view applications for each event.
-//Create Event Page
-//•	Form for event details.
-//•	On submit, calls OrganizerService.CreateEventAsync.
-//Applications Page
-//•	Displays applications for a selected event.
-//•	Allows organizer to review (approve/reject/withdraw) applications.

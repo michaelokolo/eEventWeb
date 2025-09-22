@@ -1,4 +1,5 @@
-﻿using ApplicationCore.Interfaces;
+﻿using ApplicationCore.Entities.EventAggregate;
+using ApplicationCore.Interfaces;
 using Web.Interfaces;
 using Web.ViewModels;
 
@@ -42,8 +43,19 @@ public class OrganizerDashboardViewModelService : IOrganizerDashboardViewModelSe
         {
             Id = a.Id,
             FreeLancerId = a.FreelancerId,
-            status = a.Status,
+            Status = a.Status,
             AppliedOn = a.AppliedOn
         }).ToList();
+    }
+
+    public async Task ReviewApplicationAsync(int eventId, int applicationId, ApplicationStatus status)
+    {
+        await _organizerService.ReviewApplicationAsync(eventId, applicationId, status);
+    }
+
+    public async Task<int> CreateEventAsync(string organizerId, CreateEventViewModel model)
+    {
+        var roleInfo = new EventRoleInfo(model.Role, model.Location, model.Requirements.Select(r => new Requirement(r)), model.Budget);
+        return await _organizerService.CreateEventAsync(organizerId, model.Title, model.Description, model.Date, model.PictureUri, roleInfo);
     }
 }

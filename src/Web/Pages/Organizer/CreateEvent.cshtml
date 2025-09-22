@@ -1,0 +1,77 @@
+﻿@page
+@model Web.Pages.Organizer.CreateEventModel
+@{
+	ViewData["Title"] = "Create Event";
+}
+<h2>Create Event</h2>
+<form method="post">
+    <div class="form-group">
+        <label asp-for="Event.Title"></label>
+        <input asp-for="Event.Title" class="form-control" />
+        <span asp-validation-for="Event.Title" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Event.Description"></label>
+        <textarea asp-for="Event.Description" class="form-control"></textarea>
+        <span asp-validation-for="Event.Description" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Event.Date"></label>
+        <input asp-for="Event.Date" type="date" class="form-control" />
+        <span asp-validation-for="Event.Date" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Event.PictureUri"></label>
+        <input asp-for="Event.PictureUri" class="form-control" />
+        <span asp-validation-for="Event.PictureUri" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Event.Role"></label>
+        <input asp-for="Event.Role" class="form-control" />
+        <span asp-validation-for="Event.Role" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Event.Location"></label>
+        <input asp-for="Event.Location" class="form-control" />
+        <span asp-validation-for="Event.Location" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Event.Budget"></label>
+        <input asp-for="Event.Budget" type="number" class="form-control" />
+        <span asp-validation-for="Event.Budget" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label>Requirements</label>
+        <div id="requirements-list">
+            @for (int i = 0; i < Model.Event.Requirements.Count; i++)
+            {
+                <div class="input-group mb-2">
+                    <input asp-for="Event.Requirements[i]" class="form-control" />
+                    <button type="button" class="btn btn-danger" onclick="removeRequirement(this)">Remove</button>
+                </div>
+            }
+        </div>
+        <button type = "button" class= "btn btn-secondary" onclick = "addRequirement()" >Add Requirement</button>
+    </div>
+    <button type="submit" class="btn btn-success">Create</button>
+</form>
+
+
+@section Scripts {
+    <script>
+        function addRequirement() {
+            var list = document.getElementById('requirements-list');
+            var index = list.children.length;
+            var div = document.createElement('div');
+            div.className = 'input-group mb-2';
+            div.innerHTML =
+                `<input name = "Event.Requirements[${index}]" class= "form-control" />
+                 <button type = "button" class= "btn btn-danger" onclick = "removeRequirement(this)" > Remove </button>`;
+            list.appendChild(div);
+        }
+        function removeRequirement(btn)
+        {
+            btn.parentElement.remove();
+        }
+    </script>
+}
