@@ -10,7 +10,7 @@ public class CreateEventViewModel
     [Required]
     public string Description { get; set; } = "";
     [Required]
-    public DateTime Date { get; set; }
+    public DateTime Date { get; set; } 
     [Required]
     public string PictureUri { get; set; } = "";
     [Required]
@@ -20,4 +20,9 @@ public class CreateEventViewModel
     [Required]
     public decimal Budget { get; set; }
     public List<string> Requirements { get; set; } = new();
+
+    public CreateEventViewModel()
+    {
+        Date = DateTime.Today;
+    }
 }
