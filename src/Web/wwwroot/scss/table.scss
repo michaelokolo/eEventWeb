@@ -1,0 +1,67 @@
+﻿@import "base";
+
+.table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    margin-top: 1.5rem;
+    background-color: $color-white;
+    border-radius: 0.75rem;
+    overflow: hidden;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+
+    thead {
+        background: $color-light-gray;
+
+        th {
+            text-align: left;
+            padding: 0.75rem 1rem;
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: $color-gray;
+            border-bottom: 1px solid $color-border;
+        }
+    }
+
+    tbody {
+        tr {
+            transition: background 0.2s ease;
+
+            &:hover {
+                background: #f3f4f6;
+            }
+
+            td {
+                padding: 0.75rem 1rem;
+                font-size: 0.9rem;
+                color: $color-black;
+                border-bottom: 1px solid $color-border;
+            }
+        }
+
+            tr:last-child td {
+                border-bottom: none;
+            }
+    }
+}
+
+
+.card {
+  background: $color-white;
+  border: 1px solid $color-light-gray;
+  border-radius: 0.75rem;
+  overflow: hidden;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+
+  .card-header {
+    background: $color-light-gray;
+    padding: 1rem 1.25rem;
+    border-bottom: 1px solid $color-light-gray;
+
+    h3 {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: $color-black;
+    }
+  }
+}

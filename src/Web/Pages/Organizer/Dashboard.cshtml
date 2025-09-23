@@ -3,33 +3,107 @@
 @{
 	ViewData["Title"] = "Organizer Dashboard";
 }
+<div class="container dashboard-container">
+	<!-- Header Section -->
+	<div class="dashboard-header d-flex justify-content-between align-items-start mb-5 flex-wrap">
+		<div>
+			<h1 class="dashboard-title">Welcome back, Michael 👋</h1>
+			<p class="dashboard-subtitle">
+				Manage your events, track budgets, and review applications from applicants.
+			</p>
+		</div>
+		<div class="text-end">
+			<a asp-page="CreateEvent" class="btn btn-cta-dark">
+				+ Create Event
+			</a>
+		</div>
+	</div>
 
-<h2>My Events</h2>
-<a asp-asp-page="CreateEvent" class="btn btn-primary">Create New Event</a>
-<table class="table">
-	<thead>
-		<tr>
-			<th>Title</th>
-			<th>Date</th>
-			<th>Role</th>
-			<th>Location</th>
-			<th>Budget</th>
-			<th>Actions</th>
-		</tr>
-	</thead>
-	<tbody>
-		@foreach(var e in Model.Events)
-		{
-			<tr>
-				<td>@e.Title</td>
-				<td>@e.Date.ToString("dddd, MMMM dd, yyyy · h:mm tt 'BST'")</td>
-				<td>@e.Role</td>
-				<td>@e.Location</td>
-				<td>@e.Budget?.ToString("C")</td>
-				<td>
-					<a asp-page="Applications" asp-route-eventId="@e.Id" class="btn btn-info">View Applications</a>
-				</td>
-			</tr>
-		}
-	</tbody>
-</table>
+
+	@if (Model.Events.Any())
+	{
+		<!-- Stats Overview -->
+		<div class="row mb-5 gap-3 d-flex justify-content-center align-content-center">
+			<div class="col-md-3">
+				<div class="stat-card">
+					<div class="stat-icon">
+						<i class="bi bi-clipboard-check"></i>
+					</div>
+					<h2>@Model.Events.Count()</h2>
+					<p>Total Events</p>
+				</div>
+			</div>
+			<div class="col-md-3">
+				<div class="stat-card">
+					<div class="stat-icon">
+						<i class="bi bi-calendar-event"></i>
+					</div>
+					<h2>@Model.Events.Where(e => e.Date >= DateTime.Now).Count()</h2>
+					<p>Upcoming Events</p>
+				</div>
+			</div>
+			<div class="col-md-3">
+				<div class="stat-card">
+					<div class="stat-icon">
+						<i class="bi bi-wallet2"></i>
+					</div>
+					<h2>
+						@Model.Events.Sum(e => e.Budget ?? 0).ToString("C")
+					</h2>
+					<p>Total Budget</p>
+				</div>
+			</div>
+		</div>
+	}
+	
+
+	<!-- Events Table -->
+	<div class="card">
+		<div class="card-header d-flex justify-content-between align-items-center">
+			<h3 class="mb-0">My Events</h3>
+			<a asp-page="CreateEvent" class="btn btn-cta-light">+ Add New</a>
+		</div>
+
+		<div class="table-responsive">
+			<table class="table align-middle mb-0">
+				<thead>
+					<tr>
+						<th>Title</th>
+						<th>Date</th>
+						<th>Role</th>
+						<th>Location</th>
+						<th>Budget</th>
+						<th>Actions</th>
+					</tr>
+				</thead>
+				<tbody>
+					@if (!Model.Events.Any())
+					{
+						<tr>
+							<td colspan="6" class="text-center text-muted py-4">
+								No events created yet. <a asp-page="CreateEvent">Create your first event</a>.
+							</td>
+						</tr>
+					}
+					else
+					{
+						@foreach(var e in Model.Events)
+						{
+							<tr>
+								<td>@e.Title</td>
+								<td>@e.Date.ToString("dddd, MMMM dd, yyyy · h:mm tt 'BST'")</td>
+								<td>@e.Role</td>
+								<td>@e.Location</td>
+								<td>@e.Budget?.ToString("C")</td>
+								<td>
+									<a asp-page="Applications" asp-route-eventId="@e.Id" class="btn btn-cta-light">View</a>
+								</td>
+							</tr>
+						}
+					}
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>
+

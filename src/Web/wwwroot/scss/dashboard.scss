@@ -1,0 +1,21 @@
+﻿@import "base";
+
+.dashboard-container{
+    padding: 2rem 0;
+}
+
+
+.dashboard-header {
+    .dashboard-title {
+        font-size: 1.8rem;
+        font-weight: 700;
+        color: $color-black;
+        margin-bottom: 0.25rem;
+    }
+
+    .dashboard-subtitle {
+        font-size: 1rem;
+        color: $color-gray;
+        //margin: 0;
+    }
+}
