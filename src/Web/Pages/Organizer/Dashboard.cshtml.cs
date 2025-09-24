@@ -18,8 +18,10 @@ public class DashboardModel : PageModel
     }
 
     public List<EventItemViewModel> Events { get; set; } = new();
+    public string DisplayName { get; set; } = string.Empty;
     public async Task OnGetAsync()
     {
+        DisplayName = User.Identity?.Name ?? "User";
         string? userId = User.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier)?.Value;
         Guard.Against.NullOrEmpty(userId, nameof(userId), "User ID claim is missing.");
         Events = await _dashboardService.GetEventsAsync(userId);

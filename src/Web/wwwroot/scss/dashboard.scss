@@ -19,3 +19,35 @@
         //margin: 0;
     }
 }
+
+.no-events {
+    max-width: 600px;
+    margin: 4rem auto;
+    padding: 3rem 2rem;
+    text-align: center;
+    border: 2px dashed #e5e7eb;
+    border-radius: 0.75rem;
+    background: #fafafa;
+
+    p {
+        font-size: 1.1rem;
+        color: #6c757d;
+        margin-bottom: 1rem;
+    }
+
+    .btn-create {
+        display: inline-block;
+        padding: 0.65rem 1.5rem;
+        background-color: black;
+        color: #fff;
+        font-weight: 600;
+        border-radius: 0.5rem;
+        text-decoration: none;
+        transition: background-color 0.2s ease, transform 0.2s ease;
+
+        &:hover {
+            background-color: darken(black, 7%);
+            transform: translateY(-1px);
+        }
+    }
+}
