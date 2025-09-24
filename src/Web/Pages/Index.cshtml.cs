@@ -5,6 +5,7 @@ using Web.ViewModels;
 using Web.Services;
 using Web.Interfaces;
 using System.Threading.Tasks;
+using Shared.Authorization;
 
 namespace Web.Pages;
 
@@ -20,8 +21,21 @@ public class IndexModel : PageModel
 
     public required EventIndexViewModel EventModel { get; set; } = new EventIndexViewModel();
 
-    public async Task OnGet()
+    public async Task<IActionResult> OnGet()
     {
+        if (User.Identity?.IsAuthenticated == true)
+        {
+            if (User.IsInRole(Constants.Roles.ORGANIZERS))
+            {
+                return RedirectToPage("/Organizer/Dashboard");
+            }
+            else if (User.IsInRole(Constants.Roles.FREELANCERS))
+            {
+                return RedirectToPage("/Freelancer/Dashboard");
+            }
+        }
+
         EventModel = await _eventViewModelService.GetEvents();
+        return Page();
     }
 }
