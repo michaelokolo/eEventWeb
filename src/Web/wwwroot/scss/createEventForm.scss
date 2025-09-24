@@ -1,0 +1,134 @@
+﻿@import "base";
+
+.createEvent {
+    max-width: 800px;
+    margin: 2rem auto;
+    background: $color-white;
+    border-radius: 0.75rem;
+    box-shadow: 0 2px 14px rgba(0, 0, 0, 0.05);
+    padding: 2rem;
+    font-family: $font-family-base;
+
+    &-header {
+        margin-bottom: 2rem;
+        text-align: center;
+
+        .heading {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin: 0;
+            color: $color-black;
+        }
+
+        .subheading {
+            font-size: 1rem;
+            color: $color-gray;
+            margin-top: 0.25rem;
+        }
+    }
+
+    &-form {
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: $color-black;
+        }
+
+        input,
+        textarea {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border: 1px solid $color-border;
+            border-radius: 0.5rem;
+            font-size: 1rem;
+            font-family: $font-family-base;
+            transition: border-color 0.2s ease, box-shadow 0.2s ease;
+
+            &:focus {
+                border-color: $color-border-focus;
+                box-shadow: $shadow-focus;
+                outline: none;
+            }
+        }
+
+        textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+    }
+
+    .form-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 1.25rem;
+    }
+
+    #requirements-list {
+        .input-group {
+            display: flex;
+            align-items: center;
+            //gap: 0.5rem;
+            margin-bottom: 0.75rem;
+
+            input {
+                flex: 1;
+            }
+
+            .btn-danger {
+                flex-shrink: 0;
+                padding: 0.8rem;
+            }
+        }
+    }
+
+    .form-actions {
+        margin-top: 2rem;
+        text-align: right;
+    }
+
+    button {
+        font-size: 0.95rem;
+        font-weight: 600;
+        border-radius: 0.5rem;
+        padding: 0.6rem 1.25rem;
+        cursor: pointer;
+        border: none;
+        transition: background-color 0.2s ease, transform 0.2s ease;
+
+        &:hover {
+            transform: translateY(-1px);
+        }
+
+        &.btn-success {
+            background-color: black; // green-600
+            color: $color-white;
+
+            &:hover {
+                background-color: darken(black, 7%);
+            }
+        }
+
+        &.btn-secondary {
+            background-color: $color-gray;
+            color: $color-white;
+
+            &:hover {
+                background-color: darken($color-gray, 7%);
+            }
+        }
+
+        &.btn-danger {
+            background-color: #dc2626;
+            color: $color-white;
+
+            &:hover {
+                background-color: darken(#dc2626, 7%);
+            }
+        }
+    }
+}
