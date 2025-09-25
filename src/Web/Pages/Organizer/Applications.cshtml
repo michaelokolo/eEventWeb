@@ -1,37 +1,56 @@
 ﻿@page "{EventId:int}"
 @model Web.Pages.Organizer.ApplicationsModel
 @{
-	ViewData["Title"] = "Applications";
+    ViewData["Title"] = "Applications";
 }
-<h2> Applications for Event @Model.EventId </h2>
-<table class= "table">
-    <thead>
-        <tr>
-            <th> Freelancer </th>
-            <th> Status </th>
-            <th> Applied On </th>
-            <th> Actions </th>
-        </tr>
-    </thead>
-    <tbody>
-    @foreach (var app in Model.Applications)
+
+<div class="container dashboard-container">
+    <div class="dashboard-header mb-4">
+        <h2 class="dashboard-title">Applications</h2>
+        <p class="dashboard-subtitle">Event @Model.EventId — Manage freelancer applications</p>
+    </div>
+
+    @if (Model.Applications == null || !Model.Applications.Any())
     {
-            <tr>
-                <td> @app.FreeLancerId </td>
-                <td> @app.Status </td>
-                <td> @app.AppliedOn.ToString("yyyy-MM-dd") </td>
-                <td>
-                    <form method = "post" asp - page - handler = "Review">
-                        <input type = "hidden" name = "applicationId" value = "@app.Id"/>
-                        <select name = "status" class= "form-control d-inline" style = "width:auto;">
-                            <option value = "Accepted" > Accept </option>
-                            <option value = "Rejected" > Reject </option>
-                            <option value = "Withdrawn" > Withdraw </option>
-                        </select>
-                        <button type = "submit" class= "btn btn-primary btn-sm"> Update </button>
-                    </form>
-                </td>
-            </tr>
+        <div class="no-events">
+            <p>No applications have been received for this event yet.</p>
+        </div>
     }
-    </tbody>
-</table>
+    else
+    {
+        <div class="card">
+            <div class="table-responsive">
+                <table class="table align-middle applications-table">
+                    <thead>
+                        <tr>
+                            <th>Freelancer</th>
+                            <th>Status</th>
+                            <th>Applied On</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var app in Model.Applications)
+                        {
+                            <tr>
+                                <td>@app.FreeLancerId</td>
+                                <td>
+                                    <span class="status-badge status-@app.Status">
+                                        @app.Status
+                                    </span>
+                                </td>
+                                <td>@app.AppliedOn.ToString("yyyy-MM-dd")</td>
+                                <td>
+                                    <a asp-page="ApplicationDetails" asp-route-eventId="@Model.EventId" asp-route-applicationId="@app.Id"
+                                       class="btn-action">
+                                        Review
+                                    </a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    }
+</div>
