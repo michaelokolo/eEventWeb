@@ -48,6 +48,19 @@ public class OrganizerDashboardViewModelService : IOrganizerDashboardViewModelSe
         }).ToList();
     }
 
+    public async Task<ApplicationViewModel?> GetApplicationByIdAsync(int eventId, int applicationId)
+    {
+        var app = await _organizerService.GetApplicationByIdAsync(eventId, applicationId);
+        if (app == null) return null;
+        return new ApplicationViewModel
+        {
+            Id = app.Id,
+            FreeLancerId = app.FreelancerId,
+            Status = app.Status,
+            AppliedOn = app.AppliedOn
+        };
+    }
+
     public async Task ReviewApplicationAsync(int eventId, int applicationId, ApplicationStatus status)
     {
         await _organizerService.ReviewApplicationAsync(eventId, applicationId, status);

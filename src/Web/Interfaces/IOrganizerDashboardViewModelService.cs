@@ -9,5 +9,5 @@ public interface IOrganizerDashboardViewModelService
     Task<List<ApplicationViewModel>> GetApplicationsAsync(int eventId);
     Task ReviewApplicationAsync(int eventId, int applicationId, ApplicationStatus status);
     Task<int> CreateEventAsync(string organizerId, CreateEventViewModel model);
-
+    Task<ApplicationViewModel?> GetApplicationByIdAsync(int eventId, int applicationId);
 }

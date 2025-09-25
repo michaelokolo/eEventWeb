@@ -1,0 +1,33 @@
+﻿@page "{eventId:int}/{applicationId:int}"
+@model Web.Pages.Organizer.ApplicationDetailsModel
+@{
+	ViewData["Title"] = "Application Details";
+}
+
+<h2>Application Details</h2>
+@if (Model.Application != null)
+{
+    <dl class="row">
+        <dt class="col-sm-3">Freelancer</dt>
+        <dd class="col-sm-9">@Model.Application.FreeLancerId</dd>
+        <dt class="col-sm-3">Status</dt>
+        <dd class="col-sm-9">@Model.Application.Status</dd>
+        <dt class="col-sm-3">Applied On</dt>
+        <dd class="col-sm-9">@Model.Application.AppliedOn.ToString("yyyy-MM-dd")</dd>
+        <!-- Add more fields as needed -->
+    </dl>
+    <form method="post" asp-page-handler="Review">
+        <select name="status" class="form-control d-inline" style="width:auto;">
+            <option value="Accepted">Accept</option>
+            <option value="Rejected">Reject</option>
+            <option value="Withdrawn">Withdraw</option>
+        </select>
+        <button type="submit" class="btn btn-primary btn-sm">Update Status</button>
+    </form>
+}
+else
+{
+    <div class="alert alert-warning">Application not found.</div>
+}
+<a asp-page="Applications" asp-route-eventId="@Model.EventId" class="btn btn-secondary mt-3">Back to Applications</a>
+

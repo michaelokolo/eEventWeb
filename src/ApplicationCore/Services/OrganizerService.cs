@@ -37,6 +37,14 @@ public class OrganizerService : IOrganizerService
         return eventEntity?.Applications.ToList() ?? new List<Application>();
     }
 
+    
+    public async Task<Application?> GetApplicationByIdAsync(int eventId, int applicationId)
+    {
+        var spec = new EventWithApplicationsSpecification(eventId);
+        var eventEntity = await _eventRepository.FirstOrDefaultAsync(spec);
+        return eventEntity?.Applications.FirstOrDefault(a => a.Id == applicationId);
+    }
+
     public async Task ReviewApplicationAsync(int eventId, int applicationId, ApplicationStatus status)
     {
         var spec = new EventWithApplicationsSpecification(eventId);

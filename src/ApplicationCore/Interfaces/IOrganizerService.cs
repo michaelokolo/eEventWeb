@@ -8,5 +8,6 @@ public interface IOrganizerService
     Task<IReadOnlyList<Event>> GetEventsByOrganizerAsync(string organizerId);
     Task<IReadOnlyList<Application>> GetApplicationsForEventAsync(int eventId);
     Task ReviewApplicationAsync(int eventId, int applicationId, ApplicationStatus status);
+    Task<Application?> GetApplicationByIdAsync(int eventId, int applicationId);
 }
  

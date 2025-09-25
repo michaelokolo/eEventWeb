@@ -26,10 +26,4 @@ public class ApplicationsModel : PageModel
     {
         Applications = await _dashboardService.GetApplicationsAsync(EventId);
     }
-
-    public async Task<IActionResult> OnPostReviewAsync(int applicationId, ApplicationStatus status)
-    {
-        await _dashboardService.ReviewApplicationAsync(EventId, applicationId, status);
-        return RedirectToPage(new { EventId });
-    }
 }
