@@ -42,7 +42,7 @@ public class OrganizerDashboardViewModelService : IOrganizerDashboardViewModelSe
         return apps.Select(a => new ApplicationViewModel
         {
             Id = a.Id,
-            FreeLancerId = a.FreelancerId,
+            FreelancerId = a.FreelancerId,
             Status = a.Status,
             AppliedOn = a.AppliedOn
         }).ToList();
@@ -55,7 +55,7 @@ public class OrganizerDashboardViewModelService : IOrganizerDashboardViewModelSe
         return new ApplicationViewModel
         {
             Id = app.Id,
-            FreeLancerId = app.FreelancerId,
+            FreelancerId = app.FreelancerId,
             Status = app.Status,
             AppliedOn = app.AppliedOn
         };
