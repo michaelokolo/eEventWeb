@@ -18,7 +18,9 @@ public class ForgotPasswordModel : PageModel
     private readonly IEmailSender _emailSender;
     private readonly UserManager<ApplicationUser> _userManager;
 
+    #pragma warning disable CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider adding the 'required' modifier or declaring as nullable.
     public ForgotPasswordModel(ILogger<ForgotPasswordModel> logger, IEmailSender emailSender, UserManager<ApplicationUser> userManager)
+
     {
         _logger = logger;
         _emailSender = emailSender;
@@ -32,14 +34,14 @@ public class ForgotPasswordModel : PageModel
     {
         [Required]
         [EmailAddress]
-        public string Email { get; set; }
+        public string? Email { get; set; }
     }
 
     public async Task<IActionResult> OnPostAsync()
     {
         if (ModelState.IsValid)
         {
-            var user = await _userManager.FindByEmailAsync(Input.Email);
+            var user = await _userManager.FindByEmailAsync(Input.Email!);
             if (user == null || !(await _userManager.IsEmailConfirmedAsync(user)))
             {
                 // Don't reveal that the user does not exist or is not confirmed
@@ -54,7 +56,7 @@ public class ForgotPasswordModel : PageModel
                 values: new { area = "Identity", code}, 
                 protocol: Request.Scheme);
 
-            await _emailSender.SendEmailAsync(Input.Email, "Reset Password", $"Please reset your password by <a href='{HtmlEncoder.Default.Encode(callbackUrl!)}'>clicking here</a>.");
+            await _emailSender.SendEmailAsync(Input.Email!, "Reset Password", $"Please reset your password by <a href='{HtmlEncoder.Default.Encode(callbackUrl!)}'>clicking here</a>.");
 
             _logger.LogInformation("Password reset email sent to {Email}", Input.Email);
 

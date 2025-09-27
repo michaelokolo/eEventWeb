@@ -23,7 +23,7 @@ public class FreelancerService : IFreelancerService
         return events;
     }
 
-    public async Task<int> ApplyToEventAsync(int eventId, string freelancerId)
+    public async Task<int> ApplyToEventAsync(int eventId, string freelancerId, string message)
     {
         Guard.Against.NullOrEmpty(freelancerId, nameof(freelancerId));
         Guard.Against.NegativeOrZero(eventId, nameof(eventId));
@@ -33,10 +33,16 @@ public class FreelancerService : IFreelancerService
             _logger.LogWarning("Event with ID {EventId} not found", eventId);
             throw new KeyNotFoundException($"Event with ID {eventId} not found.");
         }
-          var application = eventEntity.Apply(freelancerId);
+          var application = eventEntity.Apply(freelancerId, message);
         await _eventRepository.UpdateAsync(eventEntity);
         _logger.LogInFormation("Freelancer {FreelancerId} applied to Event {EventId}", freelancerId, eventId);
         return application.Id;
+    }
+
+    public async Task<IReadOnlyList<Event>> GetEventsByIdsAsync(IEnumerable<int> eventIds)
+    {
+        var spec = new EventsByIdsSpecification(eventIds);
+        return await _eventRepository.ListAsync(spec);
     }
 
     public async Task<IReadOnlyList<Application>> GetApplicationsByFreelancerAsync(string freelancerId)

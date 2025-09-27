@@ -51,7 +51,7 @@
                 <div class="event-details-description">
                     <h2>Role Requirements</h2>
                     <ul class="event-details-requirements">
-                        @foreach(var requirement in Model.Event.Requirements)
+                        @foreach(var requirement in Model.Event.Requirements!)
                         {
                             <li>@requirement.Description</li>
                         }

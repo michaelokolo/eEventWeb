@@ -1,0 +1,32 @@
+﻿@page
+@model Web.Pages.Freelancer.ApplicationsModel
+@{
+	ViewData["Title"] = "My Applications";
+}
+
+<h2>My Applications</h2>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Event</th>
+            <th>Role</th>
+            <th>Status</th>
+            <th>Applied On</th>
+            <th>Message</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var app in Model.Applications)
+        {
+            <tr>
+                <td>@app.EventTitle</td>
+                <td>@app.Role</td>
+                <td>@app.Status</td>
+                <td>@app.AppliedOn.ToString("yyyy-MM-dd")</td>
+                <td>@app.Message</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<a asp-page="Dashboard" class="btn btn-link mt-4">Back to Dashboard</a>

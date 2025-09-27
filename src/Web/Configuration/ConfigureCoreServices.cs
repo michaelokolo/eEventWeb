@@ -16,6 +16,7 @@ public static class ConfigureCoreServices
 
         services.AddScoped<IUserProfileService, UserProfileService>();
         services.AddScoped<IOrganizerService, OrganizerService>();
+        services.AddScoped<IFreelancerService, FreelancerService>();
 
         services.AddScoped(typeof(IAppLogger<>), typeof(LoggerAdapter<>));
         services.Configure<SmtpSettings>(configuration.GetSection("SmtpSettings"));

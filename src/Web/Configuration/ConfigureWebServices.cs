@@ -9,6 +9,7 @@ public static class ConfigureWebServices
     {
         services.AddScoped<IEventViewModelService,EventViewModelService>();
         services.AddScoped<IOrganizerDashboardViewModelService, OrganizerDashboardViewModelService>();
+        services.AddScoped<IFreelancerDashboardViewModelService, FreelancerDashboardViewModelService>();
 
         return services;
     }

@@ -1,0 +1,29 @@
+﻿@page "{eventId:int}"
+@model Web.Pages.Freelancer.ApplyModel
+@{
+	ViewData["Title"] = "Apply to Event";
+}
+@if (Model.Event != null)
+{
+	<h2>Apply to @Model.Event.Title</h2>
+	<dl>
+        <dt>Date</dt>
+        <dd>@Model.Event.Date.ToString("yyyy-MM-dd")</dd>
+        <dt>Role</dt>
+        <dd>@Model.Event.Role</dd>
+        <dt>Location</dt>
+        <dd>@Model.Event.Location</dd>
+	</dl>
+    <form method="post">
+        <div class="form-group">
+            <label for="Message">Message to Organizer</label>
+            <textarea asp-for="Message" class="form-control"></textarea>
+        </div>
+        <button type="submit" class="btn btn-success">Apply</button>
+        <a asp-page="EventDetails" asp-route-eventId="@Model.Event.Id" class="btn btn-secondary">Cancel</a>
+    </form>
+}
+else
+{
+    <div class="alert alert-warning">Event not found.</div>
+}

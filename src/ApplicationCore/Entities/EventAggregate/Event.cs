@@ -43,7 +43,7 @@ public class Event : BaseEntity, IAggregateRoot
         RoleInfo = roleInfo;
     }
 
-    public Application Apply(string freelancerId)
+    public Application Apply(string freelancerId, string message)
     {
         Guard.Against.NullOrEmpty(freelancerId, nameof(freelancerId));
 
@@ -52,7 +52,7 @@ public class Event : BaseEntity, IAggregateRoot
             throw new InvalidOperationException("Freelancer has already applied to this event.");
         }
 
-        var application = new Application(this.Id, freelancerId);
+        var application = new Application(this.Id, freelancerId, message);
         _applications.Add(application);
         return application;
     }

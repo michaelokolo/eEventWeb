@@ -1,0 +1,32 @@
+﻿@page "{eventId:int}"
+@model Web.Pages.Freelancer.EventDetailsModel
+@{
+	ViewData["Title"] = "Event Details";
+}
+
+@if (Model.Event != null)
+{
+	<div class="card">
+		<img src="@Model.Event.PictureUri" class="card-img-top" alt="@Model.Event.Title"/>
+		<div class="card-body">
+			<h3>@Model.Event.Title</h3>
+			<p>@Model.Event.Date.ToString("yyyy-MM-dd") | @Model.Event.Location</p>
+			<p><strong>Role:</strong> @Model.Event.Role</p>
+			<p><strong>Budget:</strong> @Model.Event.Budget?.ToString("C")</p>
+			<p><strong>Description:</strong> @Model.Event.Description</p>
+			<h5>Requirements</h5>
+			<ul>
+				@foreach(var req in Model.Event.Requirements!)
+				{
+					<li>@req.Description</li>
+				}
+			</ul>
+			<a asp-page="Apply" asp-route-eventId="@Model.Event.Id" class="btn btn-success">Apply</a>
+			<a asp-page="Dashboard" class="btn btn-secondary">Back</a>
+		</div>
+	</div>
+}
+else
+{
+	<div class="alert alert-warning">Event not found.</div>
+}

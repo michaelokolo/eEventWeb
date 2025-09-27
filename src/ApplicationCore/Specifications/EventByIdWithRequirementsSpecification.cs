@@ -9,6 +9,6 @@ public class EventByIdWithRequirementsSpecification : Specification<Event>
     {
         Query.Where(e => e.Id == eventId)
             .Include(e => e.RoleInfo)
-            .ThenInclude(ri => ri.Requirements);
+            .ThenInclude(ri => ri!.Requirements);
     }
 }

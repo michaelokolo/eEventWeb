@@ -1,11 +1,14 @@
 using ApplicationCore.Entities.EventAggregate;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Web.Interfaces;
 using Web.ViewModels;
+using Shared.Authorization;
 
 namespace Web.Pages.Organizer;
 
+[Authorize(Roles = Constants.Roles.ORGANIZERS)]
 public class ApplicationDetailsModel : PageModel
 {
     private readonly IOrganizerDashboardViewModelService _dashboardService;

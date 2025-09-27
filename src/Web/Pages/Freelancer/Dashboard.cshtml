@@ -1,4 +1,22 @@
 ﻿@page
 @model Web.Pages.Freelancer.DashboardModel
 @{
+	ViewData["Title"] = "Freelancer Dashboard";
 }
+<h2>Available Events</h2>
+<div class="d-flex flex-row flex-wrap gap-3">
+    @foreach (var e in Model.AvailableEvents)
+    {
+        <div class="card event-panel" style="width: 22rem; cursor:pointer;" onclick="location.href='@Url.Page("EventDetails", new { eventId = e.Id })'">
+            <img src="@e.PictureUri" class="card-img-top" alt="@e.Title" />
+            <div class="card-body">
+                <h5 class="card-title">@e.Title</h5>
+                <p class="card-text">@e.Date.ToString("yyyy-MM-dd") | @e.Location</p>
+                <p class="card-text"><strong>Role:</strong> @e.Role</p>
+                <p class="card-text"><strong>Budget:</strong> @e.Budget?.ToString("C")</p>
+            </div>
+        </div>
+    }
+</div>
+
+<a asp-page="Applications" class="btn btn-link mt-4">View My Applications</a>
