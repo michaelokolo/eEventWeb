@@ -1,29 +1,48 @@
 ﻿@page "{eventId:int}"
 @model Web.Pages.Freelancer.ApplyModel
 @{
-	ViewData["Title"] = "Apply to Event";
+    ViewData["Title"] = "Apply to Event";
 }
+
 @if (Model.Event != null)
 {
-	<h2>Apply to @Model.Event.Title</h2>
-	<dl>
-        <dt>Date</dt>
-        <dd>@Model.Event.Date.ToString("yyyy-MM-dd")</dd>
-        <dt>Role</dt>
-        <dd>@Model.Event.Role</dd>
-        <dt>Location</dt>
-        <dd>@Model.Event.Location</dd>
-	</dl>
-    <form method="post">
-        <div class="form-group">
-            <label for="Message">Message to Organizer</label>
-            <textarea asp-for="Message" class="form-control"></textarea>
-        </div>
-        <button type="submit" class="btn btn-success">Apply</button>
-        <a asp-page="EventDetails" asp-route-eventId="@Model.Event.Id" class="btn btn-secondary">Cancel</a>
-    </form>
+    <div class="apply-event container">
+        <!-- Page Header -->
+        <header class="apply-header">
+            <h1 class="event-title">Apply to @Model.Event.Title</h1>
+        </header>
+
+        <!-- Application Form -->
+        <section class="application-form">
+            <form method="post" enctype="multipart/form-data">
+                <div class="form-group">
+                    <label for="Message">Message to Organizer</label>
+                    <textarea asp-for="Message" class="form-control" placeholder="Introduce yourself and your skills..."></textarea>
+                </div>
+
+                @* <div class="form-group">
+                    <label for="Attachment">Attachment (CV, Portfolio, etc.)</label>
+                    <input asp-for="Attachment" type="file" class="form-control" />
+                </div> *@
+
+                <div class="form-guidelines">
+                    <p><strong>Tips for applying:</strong></p>
+                    <ul>
+                        <li>Briefly introduce yourself.</li>
+                        <li>Highlight relevant experience.</li>
+                        <li>Mention availability and budget expectations.</li>
+                    </ul>
+                </div>
+
+                <div class="form-actions">
+                    <button type="submit" class="btn btn-primary">Submit Application</button>
+                    <a asp-page="EventDetails" asp-route-eventId="@Model.Event.Id" class="btn btn-secondary">Cancel</a>
+                </div>
+            </form>
+        </section>
+    </div>
 }
 else
 {
-    <div class="alert alert-warning">Event not found.</div>
+    <div class="alert-warning">Event not found.</div>
 }
