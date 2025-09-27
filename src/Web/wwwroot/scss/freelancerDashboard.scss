@@ -3,12 +3,11 @@
 .freelancer-dashboard {
     display: flex;
     min-height: 100vh;
-    // Main content
+
     .main-content {
         flex: 1;
-        //margin-left: 260px;
         padding: 2rem;
-
+        // Hero Banner
         .hero-banner {
             background: linear-gradient(135deg, #f9fafb, #e5e7eb);
             border: 1px solid var(--color-border);
@@ -41,15 +40,17 @@
             transition: background 0.2s ease;
 
             &:hover {
-                background: #1f2937; // darker black
+                background: #1f2937;
             }
         }
-
+        // Dashboard header
         .dashboard-header {
             margin-bottom: 1.5rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            flex-wrap: wrap;
+            gap: 0.75rem;
 
             .heading {
                 font-size: 1.5rem;
@@ -71,13 +72,14 @@
                 background: var(--color-white);
                 transition: background 0.2s ease, color 0.2s ease;
 
-                &:hover, &:focus {
+                &:hover,
+                &:focus {
                     background-color: var(--color-gray);
                     color: var(--color-white);
                 }
             }
         }
-
+        // Events list
         .events-list {
             display: flex;
             flex-direction: column;
@@ -130,6 +132,80 @@
                 .event-budget {
                     font-size: 0.95rem;
                     margin: 0.25rem 0;
+                }
+            }
+        }
+        
+        @media (max-width: 992px) {
+            .hero-banner {
+                padding: 1.5rem;
+
+                .hero-title {
+                    font-size: 1.5rem;
+                }
+            }
+
+            .event-card {
+                flex-direction: column;
+
+                .event-image {
+                    flex: none;
+                    width: 100%;
+                    height: 180px;
+                }
+
+                .event-content {
+                    padding: 1rem;
+                }
+            }
+        }
+
+        @media (max-width: 576px) {
+            padding: 1rem;
+
+            .hero-banner {
+                padding: 1.25rem;
+
+                .hero-title {
+                    font-size: 1.25rem;
+                }
+
+                .hero-subtitle {
+                    font-size: 0.9rem;
+                }
+            }
+
+            .dashboard-header {
+                flex-direction: column;
+                align-items: flex-start;
+
+                .heading {
+                    font-size: 1.25rem;
+                }
+
+                .subheading {
+                    font-size: 0.9rem;
+                }
+
+                .btn {
+                    width: 100%;
+                    text-align: center;
+                }
+            }
+
+            .event-card {
+                .event-image {
+                    height: 150px;
+                }
+
+                .event-content {
+                    .event-title {
+                        font-size: 1rem;
+                    }
+
+                    .event-meta {
+                        font-size: 0.85rem;
+                    }
                 }
             }
         }

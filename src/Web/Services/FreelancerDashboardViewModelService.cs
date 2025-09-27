@@ -25,6 +25,7 @@ public class FreelancerDashboardViewModelService : IFreelancerDashboardViewModel
             Date = e.Date,
             PictureUri = e.PictureUri,
             Role = e.RoleInfo?.Role,
+            Description = e.Description,
             Location = e.RoleInfo?.Location,
             Budget = e.RoleInfo?.Budget,
             Requirements = e.RoleInfo?.Requirements?.Select(r => new RequirementViewModel
