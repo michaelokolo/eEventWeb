@@ -6,6 +6,7 @@
 }
 
 
+
 <div class="freelancer-dashboard container">
 
     <!-- Main Content -->
@@ -15,7 +16,11 @@
             <div class="hero-content">
                 <h1 class="hero-title">Welcome back, @userName 👋</h1>
                 <p class="hero-subtitle">Find new opportunities, track your applications, and grow your freelance career.</p>
-                <a asp-page="AvailableEvents" class="hero-cta">Browse Events</a>
+                @if (Model.AvailableEvents != null || Model.AvailableEvents!.Any())
+                {
+                    <a asp-page="AvailableEvents" class="hero-cta">Browse Events</a>
+                }
+
             </div>
         </section>
 
@@ -27,41 +32,30 @@
             </div>
             <a asp-page="Applications" class="btn">My Applications</a>
         </header>
-
-        <div class="events-list">
-            @foreach (var e in Model.AvailableEvents)
-            {
-                <div class="event-card" onclick="location.href='@Url.Page("EventDetails", new { eventId = e.Id })'">
-                    <div class="event-image">
-                        <img src="@e.PictureUri" alt="@e.Title" />
+        @if (Model.AvailableEvents != null || Model.AvailableEvents!.Any())
+        {
+            <div class="events-list">
+                @foreach (var e in Model.AvailableEvents!)
+                {
+                    <div class="event-card" onclick="location.href='@Url.Page("EventDetails", new { eventId = e.Id })'">
+                        <div class="event-image">
+                            <img src="@e.PictureUri" alt="@e.Title" />
+                        </div>
+                        <div class="event-content">
+                            <h3 class="event-title">@e.Title</h3>
+                            <p class="event-meta">@e.Date.ToString("yyyy-MM-dd") • @e.Location</p>
+                            <p class="event-role"><strong>Role:</strong> @e.Role</p>
+                            <p class="event-budget"><strong>Budget:</strong> @e.Budget?.ToString("C")</p>
+                        </div>
                     </div>
-                    <div class="event-content">
-                        <h3 class="event-title">@e.Title</h3>
-                        <p class="event-meta">@e.Date.ToString("yyyy-MM-dd") • @e.Location</p>
-                        <p class="event-role"><strong>Role:</strong> @e.Role</p>
-                        <p class="event-budget"><strong>Budget:</strong> @e.Budget?.ToString("C")</p>
-                    </div>
-                </div>
-            }
-        </div>
+                }
+            </div>
+        }
+        else
+        {
+            <div class="no-events">
+                <p>No events are currently available for you to apply to. Please check back later.</p>
+            </div>
+        }
     </main>
 </div>
-
-
-@* <h2>Available Events</h2>
-<div class="d-flex flex-row flex-wrap gap-3">
-    @foreach (var e in Model.AvailableEvents)
-    {
-        <div class="card event-panel" style="width: 22rem; cursor:pointer;" onclick="location.href='@Url.Page("EventDetails", new { eventId = e.Id })'">
-            <img src="@e.PictureUri" class="card-img-top" alt="@e.Title" />
-            <div class="card-body">
-                <h5 class="card-title">@e.Title</h5>
-                <p class="card-text">@e.Date.ToString("yyyy-MM-dd") | @e.Location</p>
-                <p class="card-text"><strong>Role:</strong> @e.Role</p>
-                <p class="card-text"><strong>Budget:</strong> @e.Budget?.ToString("C")</p>
-            </div>
-        </div>
-    }
-</div>
-
-<a asp-page="Applications" class="btn btn-link mt-4">View My Applications</a> *@
