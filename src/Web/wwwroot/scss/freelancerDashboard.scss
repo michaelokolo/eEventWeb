@@ -74,8 +74,7 @@
 
                 &:hover,
                 &:focus {
-                    background-color: var(--color-gray);
-                    color: var(--color-white);
+                    background-color: var(--color-light-gray);
                 }
             }
         }
@@ -135,7 +134,7 @@
                 }
             }
         }
-        
+
         @media (max-width: 992px) {
             .hero-banner {
                 padding: 1.5rem;
