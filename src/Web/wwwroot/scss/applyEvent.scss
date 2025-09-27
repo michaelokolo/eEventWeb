@@ -43,6 +43,11 @@
                     outline: none;
                 }
             }
+
+            textarea.form-control {
+                min-height: 200px;
+                resize: vertical;
+            }
         }
 
         .form-guidelines {

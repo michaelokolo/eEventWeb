@@ -1,32 +1,68 @@
 ﻿@page
 @model Web.Pages.Freelancer.ApplicationsModel
 @{
-	ViewData["Title"] = "My Applications";
+    ViewData["Title"] = "My Applications";
 }
 
-<h2>My Applications</h2>
-<table class="table">
-    <thead>
-        <tr>
-            <th>Event</th>
-            <th>Role</th>
-            <th>Status</th>
-            <th>Applied On</th>
-            <th>Message</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var app in Model.Applications)
-        {
-            <tr>
-                <td>@app.EventTitle</td>
-                <td>@app.Role</td>
-                <td>@app.Status</td>
-                <td>@app.AppliedOn.ToString("yyyy-MM-dd")</td>
-                <td>@app.Message</td>
-            </tr>
-        }
-    </tbody>
-</table>
+<div class="applications-page container">
+    <!-- Intro Content -->
+    <section class="applications-intro">
+        <h2 class="page-heading">Your Applications</h2>
+        <p>Here you can track all the events you’ve applied to, check their statuses, and manage your applications. Stay on top of your opportunities and follow up with organizers as needed.</p>
+    </section>
 
-<a asp-page="Dashboard" class="btn btn-link mt-4">Back to Dashboard</a>
+    @if (!Model.Applications.Any())
+    {
+        <div class="no-events">
+            <p>You haven’t applied to any events yet. Browse available events to start connecting with organizers.</p>
+            <a asp-page="/Freelancer/Dashboard" class="btn-create">Browse Events</a>
+        </div>
+    }
+    else
+    {
+        <div class="applications-list">
+            <!-- Desktop Table View -->
+            
+                <table class="applications-table">
+                    <thead>
+                        <tr>
+                            <th>Event</th>
+                            <th>Role</th>
+                            <th>Status</th>
+                            <th>Applied On</th>
+                            <th>Message</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var app in Model.Applications)
+                        {
+                            <tr>
+                                <td>@app.EventTitle</td>
+                                <td>@app.Role</td>
+                                 <td>@app.Status</td>
+                                <td>@app.AppliedOn.ToString("yyyy-MM-dd")</td>
+                                <td>@app.Message</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+
+            <!-- Mobile Card View -->
+            <div class="applications-cards">
+                @foreach (var app in Model.Applications)
+                {
+                    <div class="application-card">
+                        <h3 class="card-event">@app.EventTitle</h3>
+                        <p><strong>Role:</strong> @app.Role</p>
+                        <p><strong>Status:</strong> <span class="status">@app.Status</span></p>
+                        <p><strong>Applied On:</strong> @app.AppliedOn.ToString("yyyy-MM-dd")</p>
+                        <p><strong>Message:</strong> @app.Message</p>
+                        <a asp-page="EventDetails" asp-route-eventId="@app.EventId" class="btn-view">View Event</a>
+                    </div>
+                }
+            </div>
+        </div>
+
+        <a asp-page="Dashboard" class="btn mt-4">Back to Dashboard</a>
+    }
+</div>
