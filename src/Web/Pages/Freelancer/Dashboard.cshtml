@@ -2,8 +2,53 @@
 @model Web.Pages.Freelancer.DashboardModel
 @{
 	ViewData["Title"] = "Freelancer Dashboard";
+	var userName = User.Identity!.IsAuthenticated ? User.Identity.Name : "Guest";
 }
-<h2>Available Events</h2>
+
+
+<div class="freelancer-dashboard container">
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Hero Banner -->
+        <section class="hero-banner">
+            <div class="hero-content">
+                <h1 class="hero-title">Welcome back, @userName 👋</h1>
+                <p class="hero-subtitle">Find new opportunities, track your applications, and grow your freelance career.</p>
+                <a asp-page="AvailableEvents" class="hero-cta">Browse Events</a>
+            </div>
+        </section>
+
+        <!-- Events Section -->
+        <header class="dashboard-header">
+            <div>
+                <h2 class="heading">Available Events</h2>
+                <p class="subheading">Browse opportunities and apply directly</p>
+            </div>
+            <a asp-page="Applications" class="btn">My Applications</a>
+        </header>
+
+        <div class="events-list">
+            @foreach (var e in Model.AvailableEvents)
+            {
+                <div class="event-card" onclick="location.href='@Url.Page("EventDetails", new { eventId = e.Id })'">
+                    <div class="event-image">
+                        <img src="@e.PictureUri" alt="@e.Title" />
+                    </div>
+                    <div class="event-content">
+                        <h3 class="event-title">@e.Title</h3>
+                        <p class="event-meta">@e.Date.ToString("yyyy-MM-dd") • @e.Location</p>
+                        <p class="event-role"><strong>Role:</strong> @e.Role</p>
+                        <p class="event-budget"><strong>Budget:</strong> @e.Budget?.ToString("C")</p>
+                    </div>
+                </div>
+            }
+        </div>
+    </main>
+</div>
+
+
+@* <h2>Available Events</h2>
 <div class="d-flex flex-row flex-wrap gap-3">
     @foreach (var e in Model.AvailableEvents)
     {
@@ -19,4 +64,4 @@
     }
 </div>
 
-<a asp-page="Applications" class="btn btn-link mt-4">View My Applications</a>
+<a asp-page="Applications" class="btn btn-link mt-4">View My Applications</a> *@
