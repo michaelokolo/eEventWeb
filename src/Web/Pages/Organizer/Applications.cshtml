@@ -2,12 +2,13 @@
 @model Web.Pages.Organizer.ApplicationsModel
 @{
     ViewData["Title"] = "Applications";
+	var eventTitle = Model.Applications.FirstOrDefault()?.EventTitle ?? "Event";
 }
 
 <div class="container dashboard-container">
     <div class="dashboard-header mb-4">
         <h2 class="dashboard-title">Applications</h2>
-        <p class="dashboard-subtitle">Event @Model.EventId — Manage freelancer applications</p>
+        <p class="dashboard-subtitle">@eventTitle — Manage freelancer applications</p>
     </div>
 
     @if (Model.Applications == null || !Model.Applications.Any())
@@ -33,7 +34,7 @@
                         @foreach (var app in Model.Applications)
                         {
                             <tr>
-                                <td>@app.FreelancerId</td>
+                                <td>@app.FreelancerName</td>
                                 <td>
                                     <span class="status-badge status-@app.Status">
                                         @app.Status

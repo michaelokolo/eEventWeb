@@ -66,4 +66,10 @@ public class OrganizerService : IOrganizerService
         await _eventRepository.UpdateAsync(eventEntity);
         _logger.LogInFormation("Application with ID {ApplicationId} for Event {EventId} reviewed with status {Status}", applicationId, eventId, status);
     }
+
+    public async Task<Event?> GetEventByOrganizerAndIdAsync(string organizerId, int eventId)
+    {
+        var spec = new EventByOrganizerAndIdSpecification(organizerId, eventId);
+        return await _eventRepository.FirstOrDefaultAsync(spec);
+    }
 }

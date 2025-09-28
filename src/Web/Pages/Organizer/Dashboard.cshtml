@@ -78,16 +78,17 @@
 					<tbody>
 							@foreach (var e in Model.Events)
 							{
-								<tr>
-									<td>@e.Title</td>
-									<td>@e.Date.ToString("dddd, MMMM dd, yyyy · h:mm tt 'BST'")</td>
-									<td>@e.Role</td>
-									<td>@e.Location</td>
-									<td>@e.Budget?.ToString("C")</td>
-									<td>
-										<a asp-page="Applications" asp-route-eventId="@e.Id" class="btn btn-cta-light">View Applications</a>
-									</td>
-								</tr>
+							
+							<tr class="clickable-row" onclick="window.location='@Url.Page("EventDetails", new { eventId = e.Id })'">
+								<td>@e.Title</td>
+								<td>@e.Date.ToString("dddd, MMMM dd, yyyy · h:mm tt 'BST'")</td>
+								<td>@e.Role</td>
+								<td>@e.Location</td>
+								<td>@e.Budget?.ToString("C")</td>
+								<td>
+									<a asp-page="Applications" asp-route-eventId="@e.Id" class="btn btn-cta-light">View Applications</a>
+								</td>
+							</tr>
 							}
 					</tbody>
 				</table>

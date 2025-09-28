@@ -27,6 +27,12 @@ public class ApplicationsModel : PageModel
 
     public async Task OnGetAsync()
     {
-        Applications = await _dashboardService.GetApplicationsAsync(EventId);
+        string? organizerId = User.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier)?.Value;
+        if (string.IsNullOrEmpty(organizerId))
+        {
+            Applications = new List<ApplicationViewModel>();
+            return;
+        }
+        Applications = await _dashboardService.GetApplicationsAsync(EventId, organizerId);
     }
 }

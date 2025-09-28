@@ -1,0 +1,53 @@
+﻿@page "{eventId:int}"
+@model Web.Pages.Organizer.EventDetailsModel
+@{
+    ViewData["Title"] = "Event Details";
+}
+
+@if (Model.Event != null)
+{
+    <div class="event-details-freelancer container">
+        <!-- Hero Section -->
+        <section class="event-hero">
+            <div class="hero-image">
+                <img src="@Model.Event.PictureUri" alt="@Model.Event.Title" />
+            </div>
+            <div class="hero-content">
+                <h1 class="event-title">@Model.Event.Title</h1>
+                <p class="event-meta">
+                    <span>@Model.Event.Date.ToString("yyyy-MM-dd")</span> •
+                    <span>@Model.Event.Location</span>
+                </p>
+                <p class="event-role"><strong>Role:</strong> @Model.Event.Role</p>
+                <p class="event-budget"><strong>Budget:</strong> @Model.Event.Budget?.ToString("C")</p>
+                <div class="hero-actions">
+                    <a asp-page="Apply" asp-route-eventId="@Model.Event.Id" class="btn-primary">Apply Now</a>
+                    <a asp-page="Dashboard" class="btn-secondary">Back to Dashboard</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Description Section -->
+        <section class="event-description">
+            <h2 class="section-title">About this Event</h2>
+            <p>@Model.Event.Description</p>
+        </section>
+
+        <!-- Requirements Section -->
+        <section class="event-requirements">
+            <h2 class="section-title">Requirements</h2>
+            <ul>
+                @foreach (var req in Model.Event.Requirements!)
+                {
+                    <li>@req.Description</li>
+                }
+            </ul>
+        </section>
+    </div>
+}
+else
+{
+    <div class="event-details container">
+        <div class="alert-warning">Event not found.</div>
+    </div>
+}

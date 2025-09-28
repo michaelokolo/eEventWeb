@@ -1,0 +1,137 @@
+﻿@import "base";
+
+.application-details {
+    padding: 2rem 0;
+    font-family: var(--font-family-base);
+
+    .section-title {
+        font-size: 1.25rem;
+        font-weight: 600;
+        margin-bottom: 1rem;
+        color: var(--color-black);
+    }
+    // Freelancer Overview
+    .freelancer-overview {
+        background: var(--color-white);
+        border: 1px solid var(--color-border);
+        border-radius: 1rem;
+        padding: 1.5rem;
+        margin-bottom: 2rem;
+        box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+
+        .freelancer-name {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: var(--color-black);
+        }
+
+        .freelancer-meta {
+            font-size: 0.95rem;
+            color: var(--color-gray);
+        }
+
+        .status-label {
+            font-weight: 600;
+            color: var(--color-black);
+            background: var(--color-light-gray);
+            padding: 0.25rem 0.5rem;
+            border-radius: 0.25rem;
+            font-size: 0.85rem;
+        }
+    }
+    // Reusable card style
+    .application-message,
+    .event-summary,
+    .application-actions {
+        background: var(--color-white);
+        border: 1px solid var(--color-border);
+        border-radius: 0.75rem;
+        padding: 1.5rem;
+        margin-bottom: 1.5rem;
+        box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+
+        p {
+            font-size: 1rem;
+            line-height: 1.6;
+            color: var(--color-black);
+        }
+    }
+
+    .event-summary {
+        .event-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.75rem;
+            margin-bottom: 1rem;
+
+            @media (max-width: 768px) {
+                grid-template-columns: 1fr;
+            }
+        }
+    }
+
+    .application-actions {
+        .review-form {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+    }
+    // Buttons
+    .btn-primary {
+        background: var(--color-black);
+        color: var(--color-white);
+        padding: 0.65rem 1.25rem;
+        border-radius: 0.5rem;
+        border: none;
+        font-weight: 600;
+        cursor: pointer;
+        transition: background 0.2s ease;
+
+        &:hover {
+            background: #1f2937;
+        }
+    }
+
+    .btn-secondary,
+    .btn-view {
+        display: inline-block;
+        background: transparent;
+        border: 1px solid var(--color-border);
+        color: var(--color-black);
+        padding: 0.65rem 1.25rem;
+        border-radius: 0.5rem;
+        font-weight: 500;
+        text-decoration: none;
+        transition: background 0.2s ease;
+
+        &:hover {
+            background: var(--color-light-gray);
+        }
+    }
+
+    .select-status {
+        padding: 0.5rem;
+        border-radius: 0.5rem;
+        border: 1px solid var(--color-border);
+        font-size: 0.95rem;
+        min-width: 160px;
+        width: 250px;
+
+        @media (max-width: 480px) {
+            width: 100% !important;
+        }
+
+        &:focus {
+            outline: none;
+            border-color: var(--color-border-focus);
+            box-shadow: var(--shadow-focus);
+        }
+    }
+
+    .back-btn {
+        margin-top: 1rem;
+        display: inline-block;
+    }
+}

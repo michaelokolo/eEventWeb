@@ -7,6 +7,7 @@ public class ApplicationViewModel
     public int Id { get; set; }
     public int EventId { get; set; }
     public string? FreelancerId { get; set; }
+    public string? FreelancerName { get; set; }
     public string EventTitle { get; set; } = "";
     public string Role { get; set; } = "";
     public DateTime EventDate { get; set; }

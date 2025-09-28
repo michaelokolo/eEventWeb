@@ -46,6 +46,7 @@
 
     &:hover {
         background: darken($color-black, 7%);
+        color: $color-white;
         transform: translateY(-1px);
     }
 }

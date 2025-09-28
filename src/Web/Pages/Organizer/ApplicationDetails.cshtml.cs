@@ -30,7 +30,8 @@ public class ApplicationDetailsModel : PageModel
 
     public async Task<IActionResult> OnGetAsync()
     {
-        var application = await _dashboardService.GetApplicationByIdAsync(EventId, ApplicationId);
+        string? organizerId = User.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier)?.Value;
+        var application = await _dashboardService.GetApplicationByIdAsync(EventId, ApplicationId, organizerId!);
         if (application == null)
         {
             return NotFound();

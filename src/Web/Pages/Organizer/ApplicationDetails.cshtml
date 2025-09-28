@@ -1,33 +1,53 @@
 ﻿@page "{eventId:int}/{applicationId:int}"
 @model Web.Pages.Organizer.ApplicationDetailsModel
 @{
-	ViewData["Title"] = "Application Details";
+    ViewData["Title"] = "Application Details";
+	var message = Model?.Application?.Message ?? "No message was included in this application.";
 }
 
-<h2>Application Details</h2>
-@if (Model.Application != null)
-{
-    <dl class="row">
-        <dt class="col-sm-3">Freelancer</dt>
-        <dd class="col-sm-9">@Model.Application.FreelancerId</dd>
-        <dt class="col-sm-3">Status</dt>
-        <dd class="col-sm-9">@Model.Application.Status</dd>
-        <dt class="col-sm-3">Applied On</dt>
-        <dd class="col-sm-9">@Model.Application.AppliedOn.ToString("yyyy-MM-dd")</dd>
-        <!-- Add more fields as needed -->
-    </dl>
-    <form method="post" asp-page-handler="Review">
-        <select name="status" class="form-control d-inline" style="width:auto;">
-            <option value="Accepted">Accept</option>
-            <option value="Rejected">Reject</option>
-            <option value="Withdrawn">Withdraw</option>
-        </select>
-        <button type="submit" class="btn btn-primary btn-sm">Update Status</button>
-    </form>
-}
-else
-{
-    <div class="alert alert-warning">Application not found.</div>
-}
-<a asp-page="Applications" asp-route-eventId="@Model.EventId" class="btn btn-secondary mt-3">Back to Applications</a>
+<div class="application-details container">
+    <!-- Freelancer Info -->
+    <section class="freelancer-overview">
+        <h1 class="freelancer-name">@Model?.Application?.FreelancerName</h1>
+        <p class="freelancer-meta">
+            Applied on <strong>@Model?.Application?.AppliedOn.ToString("yyyy-MM-dd")</strong>
+            | Status: <span class="status-label">@Model?.Application?.Status</span>
+        </p>
+    </section>
 
+    <!-- Application Message -->
+    <section class="application-message">
+        <h2 class="section-title">Application Message</h2>
+        <p>
+            @message
+        </p>
+    </section>
+
+    <!-- Event Recap -->
+    <section class="event-summary">
+        <h2 class="section-title">Event Details</h2>
+        <div class="event-grid">
+            <p><strong>Title:</strong> @Model?.Application?.EventTitle</p>
+            <p><strong>Role:</strong> @Model?.Application?.Role</p>
+            <p><strong>Date:</strong> @Model?.Application?.EventDate</p>
+        </div>
+        <a asp-page="/Organizer/EventDetails" asp-route-eventId="@Model?.EventId" class="btn-view">View Full Event</a>
+    </section>
+
+    <!-- Review Actions -->
+    <section class="application-actions">
+        <h2 class="section-title">Review Application</h2>
+        <form method="post" asp-page-handler="Review" class="review-form">
+            <select name="status" class="form-control select-status">
+                <option value="Accepted">Accept</option>
+                <option value="Rejected">Reject</option>
+                <option value="Withdrawn">Withdraw</option>
+            </select>
+            <button type="submit" class="btn-primary">Update Status</button>
+        </form>
+    </section>
+
+    <a asp-page="Applications" asp-route-eventId="@Model?.EventId" class="btn-secondary back-btn">
+        Back to Applications
+    </a>
+</div>
