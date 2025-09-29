@@ -12,31 +12,23 @@
     <link rel="stylesheet" href="~/Web.styles.css" asp-append-version="true" />
 </head>
 <body class="d-flex flex-column min-vh-100">
-    <header>
-        <nav class="navbar navbar-expand-lg bg-white py-3 px-3 px-md-5" aria-label="Primary navigation">
-            <div class="container-fluid">
-                <a class="navbar-brand" asp-page="/Index">eEvent</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
+    <header class="site-header border-bottom shadow-sm">
+        <nav class="navbar navbar-expand-lg navbar-light bg-white">
+            <div class="container-fluid px-3 px-md-5">
+                <a class="navbar-brand fw-bold fs-4 text-black" asp-page="/Index">
+                    eEvent
+                </a>
+
+
+                <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#navbarContent" aria-controls="navbarContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <i class="bi bi-list fs-2"></i>
                 </button>
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav me-auto mb-2 mb-lg-0 ml">
-                        <li class="nav-item">
-                            <a class="nav-link active" asp-area="" aria-current="page"  asp-controller="Home" asp-action="Index">
-                                Home
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">Features</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">Pricing</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">About</a>
-                        </li>
-                    </ul>
-                     <partial name="_LoginPartial" />
+
+
+                <div class="collapse navbar-collapse justify-content-end" id="navbarContent">
+                    <partial name="_LoginPartial" />
                 </div>
             </div>
         </nav>
@@ -51,7 +43,7 @@
         <div class="container footer-container">
             <!-- Brand -->
             <div class="footer-brand">
-                <h2 class="logo">eEventWeb</h2>
+                <h2 class="logo">eEvent</h2>
                 <p class="tagline">Connecting organizers and freelancers seamlessly.</p>
             </div>
 
@@ -62,8 +54,6 @@
                     <li><a asp-page="/Index">Home</a></li>
                     <li><a asp-page="/Freelancer/Dashboard">Freelancer</a></li>
                     <li><a asp-page="/Organizer/Dashboard">Organizer</a></li>
-                    <li><a asp-page="/About">About</a></li>
-                    <li><a asp-page="/Contact">Contact</a></li>
                 </ul>
             </div>
 
@@ -90,7 +80,7 @@
         <!-- Bottom Bar -->
         <div class="footer-bottom">
             <div class="container">
-                <p>&copy; 2025 eEventWeb. All rights reserved.</p>
+                <p>&copy; 2025 eEvent. All rights reserved.</p>
             </div>
         </div>
     </footer>

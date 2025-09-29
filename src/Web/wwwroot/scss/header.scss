@@ -1,0 +1,61 @@
+﻿@import "base";
+.site-header {
+    font-family: var(--font-family-base);
+
+    .navbar {
+        padding-top: 0.75rem;
+        padding-bottom: 0.75rem;
+    }
+
+    .navbar-brand {
+        font-weight: 700;
+        font-size: 1.4rem;
+        letter-spacing: -0.02em;
+    }
+
+    .navbar-toggler {
+        font-size: 1.25rem;
+        color: var(--color-black);
+    }
+
+    .profile-link {
+        color: var(--color-black);
+        font-weight: 500;
+
+        &:hover {
+            color: var(--color-gray);
+        }
+    }
+
+    .dropdown-menu {
+        font-size: 0.9rem;
+        min-width: 200px;
+
+        .dropdown-header {
+            font-size: 0.75rem;
+        }
+    }
+
+    .btn-header {
+        border-radius: 0.5rem;
+        font-weight: 600;
+    }
+
+    .btn-outline-dark {
+        border-color: var(--color-border);
+
+        &:hover {
+            background-color: var(--color-black);
+            color: var(--color-white);
+        }
+    }
+
+    .btn-dark {
+        background-color: var(--color-black);
+        color: var(--color-white);
+
+        &:hover {
+            opacity: 0.9;
+        }
+    }
+}
