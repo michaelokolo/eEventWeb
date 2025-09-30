@@ -77,6 +77,11 @@ It enables organizers to create and manage events, and freelancers to browse, ap
 
 5. **Access the app**
     - Open [https://localhost:7290/](https://localhost:7290/) in your browser.
+   Note: To create migrations, run the following commands (from the Web folder in the CLI):
+    ```bash
+    dotnet ef migrations add InitialIdentityModel --context AppIdentityDbContext -p ../Infrastructure/Infrastructure.csproj -s Web.csproj -o Identity/Migrations
+    dotnet ef migrations add InitialEventModel --context EventAppContext -p ../Infrastructure/Infrastructure.csproj -s Web.csproj -o Data/Migrations
+    ```
 
 ---
 ## Configuration
