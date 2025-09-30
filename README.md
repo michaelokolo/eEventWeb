@@ -38,7 +38,7 @@ This structure helps separate concerns and keeps the codebase maintainable and s
 
 1. **Clone the repository**
 ```bash
-git clone https://github.com/<your-username>/eevent.git
+git clone [https://github.com/<your-username>/eevent.git](https://github.com/michaelokolo/eEventWeb.git)
 cd eevent
 ```
 
