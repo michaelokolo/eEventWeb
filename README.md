@@ -82,7 +82,7 @@ It enables organizers to create and manage events, and freelancers to browse, ap
     dotnet ef migrations add InitialEventModel --context EventAppContext -p ../Infrastructure/Infrastructure.csproj -s Web.csproj -o Data/Migrations
     ```
 ## Project Structure
-
+```text
 eEventWeb/
 ├── src/
 │   ├── ApplicationCore/        # Domain models, business logic, DDD aggregates
@@ -91,7 +91,7 @@ eEventWeb/
 ├── README.md                   # Project documentation
 ├── LICENSE                     # License file
 └── .gitignore                  # Git ignore rules
-
+```
 ---
 ## Configuration
 
