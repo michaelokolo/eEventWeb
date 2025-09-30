@@ -1,7 +1,7 @@
 # eEvent 🎉
 
 **eEvent** is a platform where event organizers can post gigs and roles, and freelancers can browse and apply to them.  
-Built using **Clean Architecture** with **.NET 8** backend and **React Native** for the mobile frontend.
+Built using **Clean Architecture** with **.NET 8**.
 
 ---
 
