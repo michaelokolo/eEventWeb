@@ -4,8 +4,9 @@
 
 **eEvent** is a modern event management platform built with ASP.NET Core (.NET 8), following Clean Architecture and Domain-Driven Design (DDD) principles.  
 It enables organizers to create and manage events, and freelancers to browse, apply, and track their applications.
+<br>
 <img width="1461" height="904" alt="image" src="https://github.com/user-attachments/assets/46671bff-38f2-420a-8d38-8d6f7a9555a8" />
-
+<br>
 ---
 
 ## Features
