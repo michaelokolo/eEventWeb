@@ -53,7 +53,7 @@ dotnet run
 
 ## 🤝 Contributing
 
-We welcome contributions! Please see CONTRIBUTING.md for guidelines on:
+We welcome contributions! Please see [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines on:
 - Forking the repository
 - Branching and coding conventions
 - Raising issues and submitting pull requests
@@ -66,4 +66,4 @@ We welcome contributions! Please see CONTRIBUTING.md for guidelines on:
  - Admin dashboard
 
 ## 📜 License
-This project is licensed under the MIT License. See LICENSE for details.
+This project is licensed under the MIT License. See [LICENSE](LICENSE) for details.
