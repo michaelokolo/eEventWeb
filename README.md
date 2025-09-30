@@ -33,7 +33,6 @@ It enables organizers to create and manage events, and freelancers to browse, ap
 - [.NET 8 SDK](https://dotnet.microsoft.com/download/dotnet/8.0)
 - [SQL Server](https://www.microsoft.com/en-us/sql-server/sql-server-downloads) or SQLite
 - [Visual Studio 2022](https://visualstudio.microsoft.com/vs/) or [VS Code](https://code.visualstudio.com/)
-- [Node.js](https://nodejs.org/) (if using frontend assets)
 
 ### Setup
 
