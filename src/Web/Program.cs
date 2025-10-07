@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Authorization;
 using Infrastructure.Data;
 using ApplicationCore.Interfaces;
+using Microsoft.EntityFrameworkCore;
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -18,7 +19,22 @@ builder.Services.AddControllersWithViews();
 
 if (builder.Environment.IsDevelopment())
 {
+    // Configure SQL Server (Local)
     Infrastructure.Dependencies.ConfigureServices(builder.Configuration, builder.Services);
+}
+else
+{
+    // Configure SQL Server (prod)
+    builder.Services.AddDbContext<EventAppContext>(c =>
+    {
+        var connectionString = builder.Configuration[builder.Configuration["AZURE_SQL_EEVENT_APP_CONNECTION_STRING"] ?? ""];
+        c.UseSqlServer(connectionString, sqlOptions => sqlOptions.EnableRetryOnFailure());
+    });
+    builder.Services.AddDbContext<AppIdentityDbContext>(options =>
+    {
+        var connectionString = builder.Configuration[builder.Configuration["AZURE_SQL_EEVENT_IDENTITY_CONNECTION_STRING"] ?? ""];
+        options.UseSqlServer(connectionString, sqlOptions => sqlOptions.EnableRetryOnFailure());
+    });
 }
 
 
